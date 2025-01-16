@@ -1,8 +1,9 @@
-# React + Vite
+# Disgame Client - React Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This React application is designed to interact with the Disgame server, enabling users to engage in real-time conversations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive user interface for real-time conversations.
+- User authentication.
+- Management of messages, games, and parties.
