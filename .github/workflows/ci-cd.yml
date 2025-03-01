@@ -1,0 +1,51 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/*
+      - release/*
+      - hotfix/*
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.x'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run lint
+
+  deploy:
+    needs: [lint]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: Deploy
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: SSH Deployment
+        uses: appleboy/ssh-action@v1.2.1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/${{ secrets.SSH_USER }}/sites/disgame-client
+            git pull origin main
+            npm install
+            npm run build
