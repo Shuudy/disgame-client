@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Games from "./components/Games/Games";
+import Login from "./components/Auth/Login";
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
             <AuthProvider>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="login" element={<Login />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="games" element={<Games />} />
                     </Route>
