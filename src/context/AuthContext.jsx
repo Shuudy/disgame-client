@@ -36,6 +36,8 @@ export const AuthProvider = ({ children }) => {
         if (data.token) {
             setUser({ token: data.token });
             localStorage.setItem("token", data.token);
+        } else {
+            throw new Error("Login failed. Please check your credentials.");
         }
     };
 
