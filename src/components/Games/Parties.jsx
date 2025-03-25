@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
 
-function Games() {
-    const [games, setGames] = useState([]);
+function Parties() {
+    const [parties, setParties] = useState([]);
     const [error, setError] = useState(null);
+    const { id } = useParams();
     const { user } = useAuth();
 
     useEffect(() => {
-        const fetchGames = async () => {
+        const fetchParties = async () => {
             const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/games`,
+                `${import.meta.env.VITE_API_URL}/parties/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${user.token}`,
@@ -19,27 +20,24 @@ function Games() {
             );
 
             if (response.status === 404) {
-                setError("No games found.");
+                setError("No parties found for this game.");
                 return;
             }
-
             const data = await response.json();
-            setGames(data);
+            setParties(data);
         };
-        fetchGames();
+        fetchParties();
     }, []);
 
     return (
         <div>
-            <h1>Games</h1>
+            <h1>Parties</h1>
             {error ? (
                 <p>{error}</p>
             ) : (
                 <ul>
-                    {games.map((game) => (
-                        <li key={game.id}>
-                            <Link to={`/games/${game.id}`}>{game.name}</Link>
-                        </li>
+                    {parties.map((party) => (
+                        <li key={party.id}>{party.name}</li>
                     ))}
                 </ul>
             )}
@@ -47,4 +45,4 @@ function Games() {
     );
 }
 
-export default Games;
+export default Parties;
