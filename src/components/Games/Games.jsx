@@ -27,7 +27,7 @@ function Games() {
             setGames(data);
         };
         fetchGames();
-    }, []);
+    }, [user.token]);
 
     return (
         <div>
