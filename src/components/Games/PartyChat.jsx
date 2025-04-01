@@ -19,6 +19,9 @@ function PartyChat({ party }) {
 
         socketInstance.on("connect", () => {
             console.log("Connected to WebSocket server");
+
+            socketInstance.emit("joinParty", { partyId: party.id });
+            console.log(`Joined party with ID: ${party.id}`);
         });
     }, [user.token]);
 
