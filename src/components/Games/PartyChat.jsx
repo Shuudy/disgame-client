@@ -7,6 +7,7 @@ function PartyChat({ party }) {
     const { user } = useAuth();
     const [socket, setSocket] = useState(null);
     const [message, setMessage] = useState("");
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         const socketInstance = io(import.meta.env.VITE_SOCKET_URL, {
@@ -23,6 +24,17 @@ function PartyChat({ party }) {
             socketInstance.emit("joinParty", { partyId: party.id });
             console.log(`Joined party with ID: ${party.id}`);
         });
+
+        socketInstance.on("receiveMessage", (newMessage) => {
+            console.log("Received message", newMessage);
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                {
+                    username: newMessage.user.username,
+                    content: newMessage.message,
+                },
+            ]);
+        });
     }, [user.token]);
 
     const handleSendMessage = () => {
@@ -34,6 +46,13 @@ function PartyChat({ party }) {
     return (
         <div>
             <h2>Chat for {party.name}</h2>
+            <div>
+                {messages.map((message, index) => (
+                    <div key={index}>
+                        <strong>{message.username}</strong>: {message.content}
+                    </div>
+                ))}
+            </div>
             <input
                 type="text"
                 placeholder="Type your message..."
