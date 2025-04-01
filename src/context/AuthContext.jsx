@@ -43,13 +43,24 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const register = async (username, password) => {
+        const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/auth/register`,
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password }),
+            }
+        );
+    };
+
     const logout = () => {
         setUser(null);
         localStorage.removeItem("token");
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, register, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );
