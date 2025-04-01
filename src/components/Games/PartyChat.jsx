@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 function PartyChat({ party }) {
     const { user } = useAuth();
     const [socket, setSocket] = useState(null);
+    const [error, setError] = useState(null);
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
 
@@ -21,8 +22,14 @@ function PartyChat({ party }) {
         socketInstance.on("connect", () => {
             console.log("Connected to WebSocket server");
 
-            socketInstance.emit("joinParty", { partyId: party.id });
-            console.log(`Joined party with ID: ${party.id}`);
+            socketInstance.emit("joinParty", { partyId: party.id }, (response) => {
+                if (!response.success) {
+                    console.error("Error joining party", response.message);
+                    setError(response.message);
+                } else {
+                    console.log(`Joined party with ID: ${party.id}`);
+                }
+            });
         });
 
         socketInstance.on("receiveMessage", (newMessage) => {
@@ -36,6 +43,10 @@ function PartyChat({ party }) {
             ]);
         });
     }, [user.token, party.id]);
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     const handleSendMessage = () => {
         console.log("Sending message", message);
