@@ -22,6 +22,11 @@ function PartyChat({ party }) {
         });
     }, [user.token]);
 
+    const handleSendMessage = () => {
+        console.log("Sending message", message);
+        setMessage("");
+    };
+
     return (
         <div>
             <h2>Chat for {party.name}</h2>
@@ -30,6 +35,7 @@ function PartyChat({ party }) {
                 placeholder="Type your message..."
                 onChange={(e) => setMessage(e.target.value)}
             />
+            <button onClick={() => handleSendMessage()}>Send</button>
         </div>
     );
 }
