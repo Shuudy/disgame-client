@@ -27,6 +27,7 @@ function PartyChat({ party }) {
 
     const handleSendMessage = () => {
         console.log("Sending message", message);
+        socket.emit("sendMessage", { partyId: party.id, message });
         setMessage("");
     };
 
