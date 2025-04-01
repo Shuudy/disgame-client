@@ -58,6 +58,11 @@ function PartyChat({ party }) {
                 placeholder="Type your message..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleSendMessage();
+                    }
+                }}
             />
             <button onClick={() => handleSendMessage()}>Send</button>
         </div>
