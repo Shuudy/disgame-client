@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 function PartyChat({ party }) {
     const { user } = useAuth();
     const [socket, setSocket] = useState(null);
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         const socketInstance = io(import.meta.env.VITE_SOCKET_URL, {
@@ -24,6 +25,11 @@ function PartyChat({ party }) {
     return (
         <div>
             <h2>Chat for {party.name}</h2>
+            <input
+                type="text"
+                placeholder="Type your message..."
+                onChange={(e) => setMessage(e.target.value)}
+            />
         </div>
     );
 }
