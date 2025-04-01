@@ -35,7 +35,7 @@ function PartyChat({ party }) {
                 },
             ]);
         });
-    }, [user.token]);
+    }, [user.token, party.id]);
 
     const handleSendMessage = () => {
         console.log("Sending message", message);
