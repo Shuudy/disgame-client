@@ -22,14 +22,18 @@ function PartyChat({ party }) {
         socketInstance.on("connect", () => {
             console.log("Connected to WebSocket server");
 
-            socketInstance.emit("joinParty", { partyId: party.id }, (response) => {
-                if (!response.success) {
-                    console.error("Error joining party", response.message);
-                    setError(response.message);
-                } else {
-                    console.log(`Joined party with ID: ${party.id}`);
+            socketInstance.emit(
+                "joinParty",
+                { partyId: party.id },
+                (response) => {
+                    if (!response.success) {
+                        console.error("Error joining party", response.message);
+                        setError(response.message);
+                    } else {
+                        console.log(`Joined party with ID: ${party.id}`);
+                    }
                 }
-            });
+            );
         });
 
         socketInstance.on("receiveMessage", (newMessage) => {
@@ -42,6 +46,10 @@ function PartyChat({ party }) {
                 },
             ]);
         });
+
+        return () => {
+            socketInstance.disconnect();
+        };
     }, [user.token, party.id]);
 
     if (error) {
