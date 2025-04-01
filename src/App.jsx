@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Games from "./components/Games/Games";
 import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
 import Parties from "./components/Games/Parties";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="login" element={<Login />} />
+                    <Route path="register" element={<Register />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="games" element={<Games />} />
                         <Route path="games/:id" element={<Parties />} />
