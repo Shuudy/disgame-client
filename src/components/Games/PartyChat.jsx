@@ -33,6 +33,7 @@ function PartyChat({ party }) {
             <input
                 type="text"
                 placeholder="Type your message..."
+                value={message}
                 onChange={(e) => setMessage(e.target.value)}
             />
             <button onClick={() => handleSendMessage()}>Send</button>
