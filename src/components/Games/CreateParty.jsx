@@ -39,6 +39,32 @@ function CreateParty() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/parties`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                    body: JSON.stringify({
+                        name,
+                        description,
+                        gameId: id,
+                        lang: "fr",
+                        maxPlayers: 4,
+                        style: "casual",
+                    }),
+                }
+            );
+
+            console.log(response);
+        } catch (error) {
+            console.error("Error creating party:", error);
+            setError(error.message);
+        }
     };
 
     if (error) {
