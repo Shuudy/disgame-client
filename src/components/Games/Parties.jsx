@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 import PartyChat from "./PartyChat";
 
 function Parties() {
@@ -40,6 +41,9 @@ function Parties() {
             {!selectedParty ? (
                 <>
                     <h1>Parties</h1>
+                    <Link to={`/games/${id}/create`}>
+                        <button>Create a Party</button>
+                    </Link>
                     {error ? (
                         <p>{error}</p>
                     ) : (
