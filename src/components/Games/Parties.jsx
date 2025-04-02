@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import PartyChat from "./PartyChat";
 
 function Parties() {
     const [parties, setParties] = useState([]);
     const [error, setError] = useState(null);
+    const [selectedParty, setSelectedParty] = useState(null);
     const { id } = useParams();
     const { user } = useAuth();
 
@@ -27,19 +29,34 @@ function Parties() {
             setParties(data);
         };
         fetchParties();
-    }, []);
+    }, [id, user.token]);
+
+    const handleSelectParty = (party) => {
+        setSelectedParty(party);
+    };
 
     return (
         <div>
-            <h1>Parties</h1>
-            {error ? (
-                <p>{error}</p>
+            {!selectedParty ? (
+                <>
+                    <h1>Parties</h1>
+                    {error ? (
+                        <p>{error}</p>
+                    ) : (
+                        <ul>
+                            {parties.map((party) => (
+                                <li
+                                    key={party.id}
+                                    onClick={() => handleSelectParty(party)}
+                                >
+                                    {party.name}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </>
             ) : (
-                <ul>
-                    {parties.map((party) => (
-                        <li key={party.id}>{party.name}</li>
-                    ))}
-                </ul>
+                <PartyChat party={selectedParty} />
             )}
         </div>
     );
