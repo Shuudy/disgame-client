@@ -80,7 +80,7 @@ function CreateParty() {
             <h1>Create a New Party for {game.name}</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="name">Party Name:</label>
+                    <label htmlFor="name">Party Name</label>
                     <input
                         type="text"
                         id="name"
@@ -90,7 +90,7 @@ function CreateParty() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="description">Description:</label>
+                    <label htmlFor="description">Description</label>
                     <input
                         type="text"
                         id="description"
