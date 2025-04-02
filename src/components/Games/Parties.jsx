@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 function Parties() {
     const [parties, setParties] = useState([]);
@@ -32,6 +33,9 @@ function Parties() {
     return (
         <div>
             <h1>Parties</h1>
+            <Link to={`/games/${id}/create`}>
+                <button>Create a Party</button>
+            </Link>
             {error ? (
                 <p>{error}</p>
             ) : (
