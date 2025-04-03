@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 function Games() {
     const [games, setGames] = useState([]);
+    const [error, setError] = useState(null);
     const { user } = useAuth();
 
     useEffect(() => {
@@ -15,20 +17,32 @@ function Games() {
                     },
                 }
             );
+
+            if (response.status === 404) {
+                setError("No games found.");
+                return;
+            }
+
             const data = await response.json();
             setGames(data);
         };
         fetchGames();
-    }, []);
+    }, [user.token]);
 
     return (
         <div>
             <h1>Games</h1>
-            <ul>
-                {games.map((game) => (
-                    <li key={game.id}>{game.name}</li>
-                ))}
-            </ul>
+            {error ? (
+                <p>{error}</p>
+            ) : (
+                <ul>
+                    {games.map((game) => (
+                        <li key={game.id}>
+                            <Link to={`/games/${game.id}`}>{game.name}</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 }
