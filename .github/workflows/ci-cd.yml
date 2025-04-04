@@ -38,7 +38,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Whitelist IP address
-        uses: d9beuD/o2switch-whitelisting@v1
+        uses: d9beuD/o2switch-whitelisting@v1.0.1
         with:
           otp_secret: ${{ secrets.O2SWITCH_OTP_SECRET }}
           o2switch_username: ${{ secrets.O2SWITCH_USER }}
