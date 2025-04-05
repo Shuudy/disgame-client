@@ -19,7 +19,7 @@ function CreateParty() {
                         headers: {
                             Authorization: `Bearer ${user.token}`,
                         },
-                    }
+                    },
                 );
 
                 if (!response.ok) {
@@ -57,7 +57,7 @@ function CreateParty() {
                         maxPlayers: 4,
                         style: "casual",
                     }),
-                }
+                },
             );
 
             console.log(response);
