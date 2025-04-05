@@ -32,7 +32,7 @@ function PartyChat({ party }) {
                     } else {
                         console.log(`Joined party with ID: ${party.id}`);
                     }
-                }
+                },
             );
         });
 
@@ -41,7 +41,7 @@ function PartyChat({ party }) {
                 fetchedMessages.map((msg) => ({
                     username: msg.user.username,
                     content: msg.message,
-                }))
+                })),
             );
         });
 
