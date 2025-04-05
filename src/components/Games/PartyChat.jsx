@@ -36,6 +36,15 @@ function PartyChat({ party }) {
             );
         });
 
+        socketInstance.on("previousMessages", (fetchedMessages) => {
+            setMessages(
+                fetchedMessages.map((msg) => ({
+                    username: msg.user.username,
+                    content: msg.message,
+                }))
+            );
+        });
+
         socketInstance.on("receiveMessage", (newMessage) => {
             console.log("Received message", newMessage);
             setMessages((prevMessages) => [
