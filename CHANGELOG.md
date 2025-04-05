@@ -1,3 +1,12 @@
+## [0.3.0](https://github.com/Shuudy/disgame-server/compare/v0.2.0...v0.3.0) (2025-04-05)
+
+### Features
+
+* **ci/cd:** rename Node.js CI workflow to Node.js CI/CD ([#16](https://github.com/Shuudy/disgame-server/issues/16))
+* add prettier format ([#15](https://github.com/Shuudy/disgame-server/issues/15))
+* **chat:** add handling for previous messages in PartyChat component ([#14](https://github.com/Shuudy/disgame-server/issues/14))
+* change the main title ([#13](https://github.com/Shuudy/disgame-server/issues/13))
+
 ## 0.2.0 (2025-04-03)
 
 ### Features
