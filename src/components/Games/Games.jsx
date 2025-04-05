@@ -15,7 +15,7 @@ function Games() {
                     headers: {
                         Authorization: `Bearer ${user.token}`,
                     },
-                }
+                },
             );
 
             if (response.status === 404) {

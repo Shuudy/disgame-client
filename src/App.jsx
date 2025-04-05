@@ -20,7 +20,10 @@ function App() {
                     <Route element={<ProtectedRoute />}>
                         <Route path="games" element={<Games />} />
                         <Route path="games/:id" element={<Parties />} />
-                        <Route path="games/:id/create" element={<CreateParty />} />
+                        <Route
+                            path="games/:id/create"
+                            element={<CreateParty />}
+                        />
                     </Route>
                     <Route path="*" element={<NotFound />} />
                 </Routes>

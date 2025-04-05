@@ -32,7 +32,16 @@ function PartyChat({ party }) {
                     } else {
                         console.log(`Joined party with ID: ${party.id}`);
                     }
-                }
+                },
+            );
+        });
+
+        socketInstance.on("previousMessages", (fetchedMessages) => {
+            setMessages(
+                fetchedMessages.map((msg) => ({
+                    username: msg.user.username,
+                    content: msg.message,
+                })),
             );
         });
 
