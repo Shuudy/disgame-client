@@ -1,6 +1,6 @@
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function CreateParty() {
     const { user } = useAuth();
@@ -11,6 +11,7 @@ function CreateParty() {
     const [maxPlayers, setMaxPlayers] = useState(4);
     const [error, setError] = useState(null);
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchGame = async () => {
@@ -62,6 +63,8 @@ function CreateParty() {
             );
 
             console.log(response);
+
+            navigate(`/games/${id}`);
         } catch (error) {
             console.error("Error creating party:", error);
             setError(error.message);
