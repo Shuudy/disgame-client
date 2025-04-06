@@ -7,7 +7,6 @@ function CreateParty() {
     const [game, setGame] = useState(null);
     const [name, setName] = useState("");
     const [error, setError] = useState(null);
-    const [description, setDescription] = useState("");
     const { id } = useParams();
 
     useEffect(() => {
@@ -51,7 +50,6 @@ function CreateParty() {
                     },
                     body: JSON.stringify({
                         name,
-                        description,
                         gameId: id,
                         lang: "fr",
                         maxPlayers: 4,
@@ -86,16 +84,6 @@ function CreateParty() {
                         id="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="description">Description</label>
-                    <input
-                        type="text"
-                        id="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
                         required
                     />
                 </div>
