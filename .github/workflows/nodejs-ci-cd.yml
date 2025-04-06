@@ -36,6 +36,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Whitelist IP address
+        uses: d9beuD/o2switch-whitelisting@v1.0.1
+        with:
+          otp_secret: ${{ secrets.O2SWITCH_OTP_SECRET }}
+          o2switch_username: ${{ secrets.O2SWITCH_USER }}
+          o2switch_password: ${{ secrets.O2SWITCH_PASSWORD }}
+          o2switch_host: ${{ secrets.O2SWITCH_HOST }}
       
       - name: SSH Deployment
         uses: appleboy/ssh-action@v1.2.1
