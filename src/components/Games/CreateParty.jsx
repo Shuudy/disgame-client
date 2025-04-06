@@ -6,6 +6,9 @@ function CreateParty() {
     const { user } = useAuth();
     const [game, setGame] = useState(null);
     const [name, setName] = useState("");
+    const [lang, setLang] = useState("fr");
+    const [style, setStyle] = useState("casual");
+    const [maxPlayers, setMaxPlayers] = useState(4);
     const [error, setError] = useState(null);
     const { id } = useParams();
 
@@ -51,9 +54,9 @@ function CreateParty() {
                     body: JSON.stringify({
                         name,
                         gameId: id,
-                        lang: "fr",
-                        maxPlayers: 4,
-                        style: "casual",
+                        lang,
+                        maxPlayers,
+                        style,
                     }),
                 },
             );
@@ -84,6 +87,43 @@ function CreateParty() {
                         id="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="lang">Language</label>
+                    <select
+                        id="lang"
+                        value={lang}
+                        onChange={(e) => setLang(e.target.value)}
+                        required
+                    >
+                        <option value="fr">French</option>
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="style">Game Style</label>
+                    <select
+                        id="style"
+                        value={style}
+                        onChange={(e) => setStyle(e.target.value)}
+                        required
+                    >
+                        <option value="casual">Casual</option>
+                        <option value="competitive">Competitive</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="maxPlayers">Max Players</label>
+                    <input
+                        type="number"
+                        id="maxPlayers"
+                        value={maxPlayers}
+                        onChange={(e) => setMaxPlayers(Number(e.target.value))}
+                        min="2"
+                        max="10"
                         required
                     />
                 </div>
