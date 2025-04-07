@@ -1,14 +1,17 @@
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function CreateParty() {
     const { user } = useAuth();
     const [game, setGame] = useState(null);
     const [name, setName] = useState("");
+    const [lang, setLang] = useState("fr");
+    const [style, setStyle] = useState("casual");
+    const [maxPlayers, setMaxPlayers] = useState(4);
     const [error, setError] = useState(null);
-    const [description, setDescription] = useState("");
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchGame = async () => {
@@ -51,16 +54,17 @@ function CreateParty() {
                     },
                     body: JSON.stringify({
                         name,
-                        description,
                         gameId: id,
-                        lang: "fr",
-                        maxPlayers: 4,
-                        style: "casual",
+                        lang,
+                        maxPlayers,
+                        style,
                     }),
                 },
             );
 
             console.log(response);
+
+            navigate(`/games/${id}`);
         } catch (error) {
             console.error("Error creating party:", error);
             setError(error.message);
@@ -90,12 +94,39 @@ function CreateParty() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="description">Description</label>
+                    <label htmlFor="lang">Language</label>
+                    <select
+                        id="lang"
+                        value={lang}
+                        onChange={(e) => setLang(e.target.value)}
+                        required
+                    >
+                        <option value="fr">French</option>
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="style">Game Style</label>
+                    <select
+                        id="style"
+                        value={style}
+                        onChange={(e) => setStyle(e.target.value)}
+                        required
+                    >
+                        <option value="casual">Casual</option>
+                        <option value="competitive">Competitive</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="maxPlayers">Max Players</label>
                     <input
-                        type="text"
-                        id="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        type="number"
+                        id="maxPlayers"
+                        value={maxPlayers}
+                        onChange={(e) => setMaxPlayers(Number(e.target.value))}
+                        min="2"
+                        max="10"
                         required
                     />
                 </div>
