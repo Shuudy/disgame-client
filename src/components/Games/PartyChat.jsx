@@ -9,6 +9,7 @@ function PartyChat({ party }) {
     const [error, setError] = useState(null);
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
+    const [players, setPlayers] = useState([]);
 
     useEffect(() => {
         const socketInstance = io(import.meta.env.VITE_SOCKET_URL, {
@@ -56,6 +57,11 @@ function PartyChat({ party }) {
             ]);
         });
 
+        socketInstance.on("updatePlayers", (playerList) => {
+            console.log("Updated player list:", playerList);
+            setPlayers(playerList);
+        });
+
         return () => {
             socketInstance.disconnect();
         };
@@ -74,6 +80,14 @@ function PartyChat({ party }) {
     return (
         <div>
             <h2>Chat for {party.name}</h2>
+            <div>
+                <h3>Players in the Party</h3>
+                <ul>
+                    {players.map((player, index) => (
+                        <li key={index}>{player.username}</li>
+                    ))}
+                </ul>
+            </div>
             <div>
                 {messages.map((message, index) => (
                     <div key={index}>
