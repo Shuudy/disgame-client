@@ -1,6 +1,7 @@
 import Navbar from "./UI/Navbar";
 import Hero from "./UI/Hero";
 import PopularGames from "./UI/PopularGames";
+import Features from "./UI/Features";
 
 function Home() {
     return (
@@ -9,6 +10,7 @@ function Home() {
             <Hero />
 
             <PopularGames />
+            <Features />
 
             <div>
                 <h1>Home</h1>
