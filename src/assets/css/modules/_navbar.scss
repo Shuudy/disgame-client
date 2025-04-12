@@ -1,12 +1,11 @@
 
 @use '../utils/placeholders' as *;
 @use '../utils/colors';
+@use '../utils/variables';
 
 .navbar {
 
-    background-color: #000;
-
-    height: 88px;
+    height: variables.$navbar-height;
 
     &__content {
         display: flex;

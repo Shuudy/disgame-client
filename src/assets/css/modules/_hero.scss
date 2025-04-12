@@ -1,0 +1,94 @@
+
+@use '../utils/placeholders' as *;
+@use '../utils/variables';
+@use '../utils/colors';
+
+.hero {
+
+    height: calc(100vh - variables.$navbar-height);
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        height: inherit;
+
+        @extend %container;
+    }
+
+    &__illustration {
+        background-color: red;
+
+        height: 660px;
+        width: 660px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__infos {
+        display: flex;
+        flex-direction: column;
+
+        max-width: 594px;
+
+        &-title {
+            font-size: 48px;
+            font-weight: 600;
+
+            margin-bottom: 24px;
+
+            span {
+                color: colors.$color-primary;
+            }
+        }
+
+        &-description {
+            margin-bottom: 40px;
+
+            max-width: 561px;
+
+            font-size: 18px;
+
+            color: #d1d6db;
+        }
+
+        &-ctas {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        &-cta {
+            font-size: 14px;
+            font-weight: 500;
+
+            padding: 13px 29px;
+
+            border-radius: 6px;
+
+            &-start {
+                background-color: colors.$color-primary;
+
+                &:hover {
+                    background-color: colors.$color-primary-hover;
+                }
+            }
+
+            &-explore {
+                color: colors.$color-special-hover;
+                background-color: transparent;
+
+                border: 1px solid colors.$color-primary;
+
+                &:hover {
+                    background-color: colors.$color-special2-background;
+                }
+            }
+        }
+    }
+}
