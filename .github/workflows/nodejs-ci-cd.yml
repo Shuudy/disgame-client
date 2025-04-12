@@ -38,9 +38,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Whitelist IP address
-        uses: d9beuD/o2switch-whitelisting@v1.0.1
+        uses: d9beuD/o2switch-whitelisting@main
         with:
-          otp_secret: ${{ secrets.O2SWITCH_OTP_SECRET }}
           o2switch_username: ${{ secrets.O2SWITCH_USER }}
           o2switch_password: ${{ secrets.O2SWITCH_PASSWORD }}
           o2switch_host: ${{ secrets.O2SWITCH_HOST }}
@@ -53,7 +52,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/${{ secrets.SSH_USER }}/sites/disgame-client
+            cd ${{ secrets.SSH_PATH }}
             git pull origin main
             npm install
             npm run build

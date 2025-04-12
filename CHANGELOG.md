@@ -1,3 +1,12 @@
+## [0.4.0](https://github.com/Shuudy/disgame-server/compare/v0.3.0...v0.4.0) (2025-04-07)
+
+### Features
+- added player list display and update functionality in PartyChat. [(#19)](https://github.com/Shuudy/disgame-client/pull/19)
+
+### Bug Fixes
+- updated o2switch-whitelisting version in CI/CD pipeline. ([(#22)](https://github.com/Shuudy/disgame-client/pull/22))
+- fixed party creation fields and redirect to party list. ([#20](https://github.com/Shuudy/disgame-client/pull/20))
+
 ## [0.3.0](https://github.com/Shuudy/disgame-server/compare/v0.2.0...v0.3.0) (2025-04-05)
 
 ### Features
