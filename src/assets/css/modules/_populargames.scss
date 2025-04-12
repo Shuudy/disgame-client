@@ -1,0 +1,80 @@
+
+@use '../utils/placeholders' as *;
+@use '../utils/colors';
+@use '../utils/variables';
+
+.populargames {
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        gap: 40px;
+
+        @extend %container;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+
+        gap: 8px;
+
+        &-title {
+            font-size: 36px;
+            font-weight: 500;
+        }
+
+        &-subtitle {
+            display: flex;
+            justify-content: space-between;
+            
+            &-info {
+                color: colors.$populargames-number-color;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 24px;
+
+        &-card {
+            width: 291px;
+            height: 244px;
+            
+            &-image {
+                height: 160px;
+
+                border-top-left-radius: variables.$populargames-card-border-radius;
+                border-top-right-radius: variables.$populargames-card-border-radius;
+            }
+
+            &-infos {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+
+                padding: 1rem;
+
+                background-color: colors.$color-secondary;
+
+                border-bottom-left-radius: variables.$populargames-card-border-radius;
+                border-bottom-right-radius: variables.$populargames-card-border-radius;
+
+                &-title {
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+
+                &-number {
+                    font-size: 14px;
+                    color: colors.$populargames-number-color;
+                }
+            }
+        }
+    }
+}
