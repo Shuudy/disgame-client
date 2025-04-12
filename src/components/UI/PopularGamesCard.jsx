@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function PopularGamesCard({ title, players, image }) {
     return (
         <a href="#" className="populargames__content-card">
@@ -21,5 +23,11 @@ function PopularGamesCard({ title, players, image }) {
         </a>
     );
 }
+
+PopularGamesCard.propTypes = {
+    title: PropTypes.string.isRequired,
+    players: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+};
 
 export default PopularGamesCard;

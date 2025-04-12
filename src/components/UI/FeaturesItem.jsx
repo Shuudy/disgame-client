@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function FeaturesItem({ title, subtitle, icon }) {
     return (
         <div className="features__content-item">
@@ -9,5 +11,11 @@ function FeaturesItem({ title, subtitle, icon }) {
         </div>
     );
 }
+
+FeaturesItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+};
 
 export default FeaturesItem;
