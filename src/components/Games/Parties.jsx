@@ -12,24 +12,32 @@ function Parties() {
     const [filterStyle, setFilterStyle] = useState("");
     const { id } = useParams();
     const { user } = useAuth();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchParties = async () => {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/parties/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`,
+            setLoading(true);
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/parties/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user.token}`,
+                        },
                     },
-                },
-            );
-
-            if (response.status === 404) {
-                setError("No parties found for this game.");
-                return;
+                );
+    
+                if (response.status === 404) {
+                    setError("No parties found for this game.");
+                    return;
+                }
+                const data = await response.json();
+                setParties(data);
+            } catch (error) {
+                setError("Failed to fetch parties. Please try again later.");
+            } finally {
+                setLoading(false);
             }
-            const data = await response.json();
-            setParties(data);
         };
         fetchParties();
     }, [id, user.token]);
@@ -70,7 +78,9 @@ function Parties() {
                         </select>
                     </div>
 
-                    {error ? (
+                    {loading ? (
+                        <p>Loading parties...</p>
+                    ) : error ? (
                         <p>{error}</p>
                     ) : (
                         <ul>
@@ -79,8 +89,7 @@ function Parties() {
                                     key={party.id}
                                     onClick={() => handleSelectParty(party)}
                                 >
-                                    {party.name} - {party.lang} - {party.style}{" "}
-                                    - {party.maxPlayers} players max
+                                    {party.name} - {party.lang} - {party.style} - {party.maxPlayers} players max
                                 </li>
                             ))}
                         </ul>
