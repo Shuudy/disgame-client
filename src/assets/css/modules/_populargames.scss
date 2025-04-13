@@ -32,6 +32,22 @@
             &-info {
                 color: colors.$populargames-number-color;
             }
+
+            &-cta {
+                a {
+                    color: colors.$color-special-hover;
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        fill: colors.$color-special-hover;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
     }
 
