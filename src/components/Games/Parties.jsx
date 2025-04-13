@@ -8,6 +8,8 @@ function Parties() {
     const [parties, setParties] = useState([]);
     const [error, setError] = useState(null);
     const [selectedParty, setSelectedParty] = useState(null);
+    const [filterLang, setFilterLang] = useState("");
+    const [filterStyle, setFilterStyle] = useState("");
     const { id } = useParams();
     const { user } = useAuth();
 
@@ -36,6 +38,12 @@ function Parties() {
         setSelectedParty(party);
     };
 
+    const filteredParties = parties.filter(
+        (party) =>
+            (!filterLang || party.lang === filterLang) &&
+            (!filterStyle || party.style === filterStyle),
+    );
+
     return (
         <div>
             {!selectedParty ? (
@@ -44,16 +52,35 @@ function Parties() {
                     <Link to={`/games/${id}/create`}>
                         <button>Create a Party</button>
                     </Link>
+
+                    <div>
+                        <select onChange={(e) => setFilterLang(e.target.value)}>
+                            <option value="">All Languages</option>
+                            <option value="fr">French</option>
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                        </select>
+
+                        <select
+                            onChange={(e) => setFilterStyle(e.target.value)}
+                        >
+                            <option value="">All Styles</option>
+                            <option value="casual">Casual</option>
+                            <option value="competitive">Competitive</option>
+                        </select>
+                    </div>
+
                     {error ? (
                         <p>{error}</p>
                     ) : (
                         <ul>
-                            {parties.map((party) => (
+                            {filteredParties.map((party) => (
                                 <li
                                     key={party.id}
                                     onClick={() => handleSelectParty(party)}
                                 >
-                                    {party.name} - {party.lang} - {party.style} - {party.maxPlayers} players max
+                                    {party.name} - {party.lang} - {party.style}{" "}
+                                    - {party.maxPlayers} players max
                                 </li>
                             ))}
                         </ul>
