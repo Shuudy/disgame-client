@@ -53,7 +53,7 @@ function Parties() {
                                     key={party.id}
                                     onClick={() => handleSelectParty(party)}
                                 >
-                                    {party.name}
+                                    {party.name} - {party.lang} - {party.style} - {party.maxPlayers} players max
                                 </li>
                             ))}
                         </ul>
