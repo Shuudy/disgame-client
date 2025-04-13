@@ -35,6 +35,7 @@ function Parties() {
                 setParties(data);
             } catch (error) {
                 setError("Failed to fetch parties. Please try again later.");
+                console.error("Error fetching parties:", error);
             } finally {
                 setLoading(false);
             }
