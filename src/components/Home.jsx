@@ -3,6 +3,7 @@ import Hero from "./UI/Hero";
 import PopularGames from "./UI/PopularGames";
 import Features from "./UI/Features";
 import Promo from "./UI/Promo";
+import Footer from "./UI/Footer";
 
 function Home() {
     return (
@@ -14,10 +15,7 @@ function Home() {
             <Features />
             <Promo />
 
-            <div>
-                <h1>Home</h1>
-                <p>Welcome to the Home page!</p>
-            </div>
+            <Footer />
         </>
     );
 }
