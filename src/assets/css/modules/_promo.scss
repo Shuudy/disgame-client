@@ -1,0 +1,68 @@
+@use '../utils/colors';
+
+.promo {
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 141px;
+    margin-bottom: 80px;
+
+    &__content {
+
+        text-align: center;
+        padding: 51px 118px;
+        background: linear-gradient(to bottom, #111827 100%, #111827 95%);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        border-top: 5px solid colors.$color-primary;
+        border-radius: 8px;
+
+        &-title {
+            margin-bottom: 1rem;
+            font-size: 36px;
+            font-weight: 500;
+        }
+
+        &-subtitle {
+            margin-bottom: 32px;
+            color: #d1d5db;
+        }
+
+        &-ctas {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        &-cta {
+            font-size: 14px;
+            font-weight: 500;
+
+            padding: 13px 29px;
+
+            border-radius: 6px;
+
+            &-start {
+                background-color: colors.$color-primary;
+
+                &:hover {
+                    background-color: colors.$color-primary-hover;
+                }
+            }
+
+            &-explore {
+                color: colors.$color-special-hover;
+                background-color: #000;
+
+                border: 1px solid colors.$color-primary;
+
+                &:hover {
+                    background-color: colors.$color-special2-background;
+                }
+            }
+        }
+    }
+}

@@ -8,6 +8,7 @@ import Register from "./components/Auth/Register";
 import Parties from "./components/Games/Parties";
 import CreateParty from "./components/Games/CreateParty";
 import NotFound from "./components/Errors/NotFound";
+import "./assets/css/app.scss";
 
 function App() {
     return (

@@ -1,9 +1,22 @@
+import Navbar from "./UI/Navbar";
+import Hero from "./UI/Hero";
+import PopularGames from "./UI/PopularGames";
+import Features from "./UI/Features";
+import Promo from "./UI/Promo";
+import Footer from "./UI/Footer";
+
 function Home() {
     return (
-        <div>
-            <h1>Home</h1>
-            <p>Welcome to the Home page!</p>
-        </div>
+        <>
+            <Navbar />
+            <Hero />
+
+            <PopularGames />
+            <Features />
+            <Promo />
+
+            <Footer />
+        </>
     );
 }
 
