@@ -8,26 +8,37 @@ function Parties() {
     const [parties, setParties] = useState([]);
     const [error, setError] = useState(null);
     const [selectedParty, setSelectedParty] = useState(null);
+    const [filterLang, setFilterLang] = useState("");
+    const [filterStyle, setFilterStyle] = useState("");
     const { id } = useParams();
     const { user } = useAuth();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchParties = async () => {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/parties/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`,
+            setLoading(true);
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/parties/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user.token}`,
+                        },
                     },
-                },
-            );
-
-            if (response.status === 404) {
-                setError("No parties found for this game.");
-                return;
+                );
+    
+                if (response.status === 404) {
+                    setError("No parties found for this game.");
+                    return;
+                }
+                const data = await response.json();
+                setParties(data);
+            } catch (error) {
+                setError("Failed to fetch parties. Please try again later.");
+                console.error("Error fetching parties:", error);
+            } finally {
+                setLoading(false);
             }
-            const data = await response.json();
-            setParties(data);
         };
         fetchParties();
     }, [id, user.token]);
@@ -35,6 +46,12 @@ function Parties() {
     const handleSelectParty = (party) => {
         setSelectedParty(party);
     };
+
+    const filteredParties = parties.filter(
+        (party) =>
+            (!filterLang || party.lang === filterLang) &&
+            (!filterStyle || party.style === filterStyle),
+    );
 
     return (
         <div>
@@ -44,16 +61,36 @@ function Parties() {
                     <Link to={`/games/${id}/create`}>
                         <button>Create a Party</button>
                     </Link>
-                    {error ? (
+
+                    <div>
+                        <select onChange={(e) => setFilterLang(e.target.value)}>
+                            <option value="">All Languages</option>
+                            <option value="fr">French</option>
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                        </select>
+
+                        <select
+                            onChange={(e) => setFilterStyle(e.target.value)}
+                        >
+                            <option value="">All Styles</option>
+                            <option value="casual">Casual</option>
+                            <option value="competitive">Competitive</option>
+                        </select>
+                    </div>
+
+                    {loading ? (
+                        <p>Loading parties...</p>
+                    ) : error ? (
                         <p>{error}</p>
                     ) : (
                         <ul>
-                            {parties.map((party) => (
+                            {filteredParties.map((party) => (
                                 <li
                                     key={party.id}
                                     onClick={() => handleSelectParty(party)}
                                 >
-                                    {party.name}
+                                    {party.name} - {party.lang} - {party.style} - {party.maxPlayers} players max
                                 </li>
                             ))}
                         </ul>
