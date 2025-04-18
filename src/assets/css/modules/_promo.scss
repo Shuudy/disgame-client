@@ -22,6 +22,10 @@
         border-top: 5px solid colors.$color-primary;
         border-radius: 8px;
 
+        @media screen and (max-width: 580px) {
+            padding: 51px;
+        }
+
         &-title {
             margin-bottom: 1rem;
             font-size: 36px;
