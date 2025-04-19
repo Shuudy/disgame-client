@@ -28,6 +28,12 @@
         &-subtitle {
             display: flex;
             justify-content: space-between;
+
+            @media screen and (max-width: 728px) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
             
             &-info {
                 color: colors.$populargames-number-color;
