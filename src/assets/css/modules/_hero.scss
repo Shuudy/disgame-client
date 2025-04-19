@@ -20,8 +20,9 @@
     &__illustration {
         background-color: red;
 
-        height: 660px;
-        width: 660px;
+        width: 100%;
+        max-width: 660px;
+        aspect-ratio: 1 / 1;
 
         img {
             width: 100%;
