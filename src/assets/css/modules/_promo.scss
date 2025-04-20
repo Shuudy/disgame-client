@@ -1,10 +1,12 @@
 @use '../utils/colors';
 
 .promo {
-    max-width: 900px;
+    max-width: 932px;
     margin: 0 auto;
     margin-top: 141px;
     margin-bottom: 80px;
+
+    padding: 0 1rem;
 
     &__content {
 
@@ -19,6 +21,10 @@
 
         border-top: 5px solid colors.$color-primary;
         border-radius: 8px;
+
+        @media screen and (max-width: 580px) {
+            padding: 51px;
+        }
 
         &-title {
             margin-bottom: 1rem;
@@ -35,6 +41,10 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+
+            @media screen and (max-width: 687px) {
+                flex-direction: column;
+            }
         }
 
         &-cta {
