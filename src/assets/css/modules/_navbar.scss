@@ -1,0 +1,51 @@
+
+@use '../utils/placeholders' as *;
+@use '../utils/colors';
+@use '../utils/variables';
+
+.navbar {
+
+    height: variables.$navbar-height;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        height: inherit;
+
+        @extend %container;
+    }
+
+    &__button {
+        padding: 11px 12px;
+        font-size: 14px;
+        font-weight: 500;
+
+        border-radius: 6px;
+
+        &-register {
+            background-color: colors.$color-primary;
+
+            &:hover {
+                background-color: colors.$color-primary-hover;
+            }
+        }
+
+        &-login {
+            background-color: transparent;
+            color: colors.$color-special-hover;
+
+            &:hover {
+                background-color: colors.$color-special2-background;
+                color: colors.$color-special2-color;
+            }
+        }
+    }
+
+    &__auth {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+}

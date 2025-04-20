@@ -42,6 +42,7 @@ function PartyChat({ party }) {
                 fetchedMessages.map((msg) => ({
                     username: msg.user.username,
                     content: msg.message,
+                    timestamp: msg.timestamp,
                 })),
             );
         });
@@ -53,6 +54,7 @@ function PartyChat({ party }) {
                 {
                     username: newMessage.user.username,
                     content: newMessage.message,
+                    timestamp: newMessage.timestamp,
                 },
             ]);
         });
@@ -91,7 +93,16 @@ function PartyChat({ party }) {
             <div>
                 {messages.map((message, index) => (
                     <div key={index}>
-                        <strong>{message.username}</strong>: {message.content}
+                        <strong>{message.username}</strong>: {message.content} -{" "}
+                        {message.timestamp
+                            ? new Date(message.timestamp).toLocaleTimeString(
+                                  "fr-FR",
+                                  {
+                                      hour: "2-digit",
+                                      minute: "2-digit",
+                                  },
+                              )
+                            : "Invalid time"}
                     </div>
                 ))}
             </div>

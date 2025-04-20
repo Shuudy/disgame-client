@@ -1,0 +1,17 @@
+/**
+* Main SCSS file for the application.
+* This file imports all the necessary styles and components for the application.
+*/
+
+/**
+* Importing global styles and variables
+*/
+@use 'utils/reset';
+
+
+@use 'modules/navbar';
+@use 'modules/hero';
+@use 'modules/populargames';
+@use 'modules/features';
+@use 'modules/promo';
+@use 'modules/footer';

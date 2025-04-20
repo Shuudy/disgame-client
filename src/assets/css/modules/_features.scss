@@ -1,0 +1,61 @@
+@use '../utils/placeholders' as *;
+@use '../utils/colors';
+
+.features {
+    margin-top: 200px;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+
+        @extend %container;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+
+        &-title {
+            font-size: 36px;
+            font-weight: 500;
+        }
+
+        &-subtitle {
+            color: colors.$populargames-number-color;
+        }
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        row-gap: 1rem;
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            max-width: 240px;
+            text-align: center;
+
+            &-icon {
+                margin-bottom: 1rem;
+            }
+
+            &-title {
+                font-size: 18px;
+                font-weight: 500;
+
+                margin-bottom: 8px;
+            }
+
+            &-subtitle {
+                color: colors.$populargames-number-color;
+            }
+        }
+    }
+}
