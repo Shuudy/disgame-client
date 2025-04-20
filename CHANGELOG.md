@@ -1,3 +1,39 @@
+## [0.5.0](https://github.com/Shuudy/disgame-client/compare/v0.4.0...v0.5.0) (2025-04-20)
+
+### Features
+
+* add cta link in PopularGames component ([dd2486b](https://github.com/Shuudy/disgame-client/commit/dd2486bd394b2cd608c14d131dba3362427ac58a))
+* add error logging for party fetching failure ([d6e7bf1](https://github.com/Shuudy/disgame-client/commit/d6e7bf1db34ad3fe806019a7dae330df9489c1f3))
+* add Features component and integrate into Home page ([ed3d9b3](https://github.com/Shuudy/disgame-client/commit/ed3d9b3cb1b06e76967a69e2440ad6ad6729078f))
+* add filtering options for party list by language and style ([3dd1ed2](https://github.com/Shuudy/disgame-client/commit/3dd1ed272c6669e3b3a280bda5e10ba86e88da12))
+* add flex-wrap for features content layout ([cc046f7](https://github.com/Shuudy/disgame-client/commit/cc046f71bd7baaa08bbb02926f85d3f67da89f7e))
+* add Footer component and integrate into Home page ([0e95e34](https://github.com/Shuudy/disgame-client/commit/0e95e344853e00848a80eb5f937a698d012525a1))
+* add Hero component and integrate global styles ([a2eb3dd](https://github.com/Shuudy/disgame-client/commit/a2eb3ddf1cebbd80e3c3fb3a30453d81daec951a))
+* add loading state and error handling for party fetching ([1e47329](https://github.com/Shuudy/disgame-client/commit/1e473298e7a1bfd3da4e6623adecf48928e56a5e))
+* add main SCSS files and integrate global styles ([a1c5acf](https://github.com/Shuudy/disgame-client/commit/a1c5acf834ed92929068bee7abc3bdbb253bd709))
+* add PopularGames component and integrate into Home page ([0712fff](https://github.com/Shuudy/disgame-client/commit/0712fffb55ac55f95852b9ca4204143041e962e1))
+* add Promo component and integrate into Home page ([2f1462e](https://github.com/Shuudy/disgame-client/commit/2f1462e64eca160a207efaccceb2300fabc7e4cf))
+* add PropTypes validation to FeaturesItem and PopularGamesCard components ([43a557e](https://github.com/Shuudy/disgame-client/commit/43a557e0345d895297fb8752b8ab80028087360a))
+* add SVG assets for features section ([40ada57](https://github.com/Shuudy/disgame-client/commit/40ada575f37ce399a55521c0644c72a6786b7961))
+* add timestamp to messages in PartyChat component ([322ce39](https://github.com/Shuudy/disgame-client/commit/322ce3907b0d62f1a8c114f4f335acd7d38b21db))
+* enhance footer layout with responsive design adjustments ([6a6febf](https://github.com/Shuudy/disgame-client/commit/6a6febf500b7c6e368fb7e270565d2ea3397dab0))
+* enhance party list display with additional details ([4ce830a](https://github.com/Shuudy/disgame-client/commit/4ce830ab987f287b3f9adda44092ec3a3cd0338c))
+* implement navbar component and update Home page layout ([5d2cd3b](https://github.com/Shuudy/disgame-client/commit/5d2cd3b209e76439b08f0e0f6d861b5b42ed49c0))
+* replace anchor tags with Link components in Navbar for routing ([af74c19](https://github.com/Shuudy/disgame-client/commit/af74c19eaa4da3cde1c74b14b3794025e06177a4))
+* update promo section styles for improved layout and responsiveness ([8a94f2f](https://github.com/Shuudy/disgame-client/commit/8a94f2f125c5729a42c8dea1369f63ba802949c3))
+
+### Bug Fixes
+
+* add media query for footer list alignment on small screens ([a3fad45](https://github.com/Shuudy/disgame-client/commit/a3fad45e33406a70510d19e0fcb7d0b61aa3ae9f))
+* add media query for subtitle layout on small screens ([d64a85d](https://github.com/Shuudy/disgame-client/commit/d64a85d341bbb9a427f2378a40ee701f0cf2131b))
+* add row-gap to features content for improved spacing ([57a8ca3](https://github.com/Shuudy/disgame-client/commit/57a8ca37b527ff8d65af52bae019c786beca075b))
+* adjust bottom margin for promo section ([ccbaa60](https://github.com/Shuudy/disgame-client/commit/ccbaa6081d9f5291f6a440117fb1320bcffe5cd5))
+* adjust flex properties for hero content on small screens ([a5f38c7](https://github.com/Shuudy/disgame-client/commit/a5f38c7449e4b8483102b533dfd87da177d36ae4))
+* adjust gap and remove justify-content for populargames content layout ([2153557](https://github.com/Shuudy/disgame-client/commit/2153557171be590b5de02c0136f4657f759c67c4))
+* adjust hero illustration dimensions for better responsiveness ([d862ed3](https://github.com/Shuudy/disgame-client/commit/d862ed3bfb5337dd9dc80a2679d7f16ef6d33c4e))
+* adjust padding for promo content on small screens ([94a83b3](https://github.com/Shuudy/disgame-client/commit/94a83b32ac10d8176c093528e0e37aee79fa7d25))
+* correct padding values for footer container ([3fe3bed](https://github.com/Shuudy/disgame-client/commit/3fe3bed1316dbcf0c6658fbe9ebc956b957733d8))
+* ensure illustration is displayed as flex for consistent layout ([fc14762](https://github.com/Shuudy/disgame-client/commit/fc1476258666215e5dcae8100952167f239d57d6))
 ## [0.4.0](https://github.com/Shuudy/disgame-server/compare/v0.3.0...v0.4.0) (2025-04-07)
 
 ### Features
