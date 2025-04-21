@@ -66,6 +66,12 @@
         &-card {
             width: 291px;
             height: 244px;
+
+            transition: transform .3s ease-in-out;
+
+            &:hover {
+                transform: translateY(-6px);
+            }
             
             &-image {
                 height: 160px;
