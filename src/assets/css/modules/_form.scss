@@ -1,0 +1,111 @@
+@use '../utils/colors';
+
+.form {
+
+    &__container {
+        max-width: 450px;
+        margin: 0 auto;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    &__logo {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    &__title {
+        margin-bottom: 4px;
+        text-align: center;
+
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    &__subtitle {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #a1a1aa;
+    }
+
+    &__content {
+        background-color: #111827;
+        padding: 1.5rem;
+    }
+
+    &__group {
+        &-mb {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: .5rem;
+        }
+        
+    }
+
+    &__control {
+        width: 100%;
+
+        padding: .75rem 1rem;
+
+        border: 0;
+        border-radius: 6px;
+
+        color: #fff;
+        background-color: #1F2937;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::-ms-reveal {
+            filter: invert(100%);
+        }
+    }
+
+    &__button {
+        width: 100%;
+
+        border: 0;
+        border-radius: 6px;
+        
+        color: #fff;
+        background-color: colors.$color-primary;
+
+        //font-size: 14px;
+        font-weight: 500;
+
+        padding: .81rem 1rem;
+
+        margin-top: 1rem;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: colors.$color-primary-hover;
+        }
+    }
+
+    &__infos {
+        text-align: center;
+        margin-top: 1.5rem;
+
+        a {
+            color: colors.$color-special-hover;
+        }
+    }
+
+    &__label-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__forgot-password {
+        color: colors.$color-special-hover;
+    }
+}
