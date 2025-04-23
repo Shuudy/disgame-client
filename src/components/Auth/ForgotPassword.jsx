@@ -38,7 +38,7 @@ function ForgotPassword() {
                     <div className="form__group form__group-mb">
                         <label htmlFor="email">Adresse email</label>
                         <input
-                            type="text"
+                            type="email"
                             id="email"
                             className="form__control"
                             value={email}
