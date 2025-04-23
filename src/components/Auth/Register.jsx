@@ -17,7 +17,7 @@ function Register() {
         setLoading(true);
 
         if (password !== confirmPassword) {
-            setError("Passwords do not match");
+            setError("Les mots de passe ne correspondent pas.");
             setLoading(false);
             return;
         }
@@ -36,16 +36,16 @@ function Register() {
         <div className="form__container">
             <div className="form__content">
                 <div className="form__logo">Disgame</div>
-                <div className="form__title">Create an account</div>
+                <div className="form__title">Créer un compte</div>
                 <div className="form__subtitle">
-                    Fill in the details to register
+                    Remplissez les informations pour vous inscrire.
                 </div>
 
                 {error && <p>{error}</p>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form__group form__group-mb">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username">Nom d'utilisateur</label>
                         <input
                             type="text"
                             id="username"
@@ -57,7 +57,7 @@ function Register() {
                     </div>
 
                     <div className="form__group form__group-mb">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">Mot de passe</label>
                         <input
                             type="password"
                             id="password"
@@ -70,7 +70,7 @@ function Register() {
 
                     <div className="form__group">
                         <label htmlFor="confirm-password">
-                            Confirm Password
+                            Confirmez le mot de passe
                         </label>
                         <input
                             type="password"
@@ -85,13 +85,13 @@ function Register() {
                     <input
                         type="submit"
                         className="form__button"
-                        value={loading ? "Loading..." : "Register"}
+                        value={loading ? "Chargement..." : "S'inscrire"}
                         disabled={loading}
                     />
                 </form>
 
                 <div className="form__infos">
-                    Already have an account? <Link to="/login">Login</Link>
+                    Vous avez déjà un compte ? <Link to="/login">Se connecter</Link>
                 </div>
             </div>
         </div>
