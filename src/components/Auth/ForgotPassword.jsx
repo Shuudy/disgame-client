@@ -35,7 +35,7 @@ function ForgotPassword() {
                 {error && <p>{error}</p>}
 
                 <form onSubmit={handleSubmit}>
-                    <div className="form__group form__group-mb">
+                    <div className="form__group">
                         <label htmlFor="email">Adresse email</label>
                         <input
                             type="email"
