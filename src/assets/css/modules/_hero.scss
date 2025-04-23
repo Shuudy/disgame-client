@@ -30,6 +30,10 @@
         max-width: 660px;
         aspect-ratio: 1 / 1;
 
+        @media screen and (max-height: 800px) {
+            max-width: 560px;
+        }
+
         @media screen and (max-width: 900px) {
             display: none;
         }
