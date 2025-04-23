@@ -52,9 +52,9 @@ function Login() {
                     <div className="form__group">
                         <div className="form__label-container">
                             <label htmlFor="password">Mot de passe</label>
-                            <a className="form__forgot-password" href="#">
+                            <Link className="form__forgot-password" to="/forgot-password">
                                 Mot de passe oublié ?
-                            </a>
+                            </Link>
                         </div>
 
                         <input
