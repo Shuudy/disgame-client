@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
     const [username, setUsername] = useState("");
@@ -91,7 +91,7 @@ function Register() {
                 </form>
 
                 <div className="form__infos">
-                    Already have an account? <a href="#">Login</a>
+                    Already have an account? <Link to="/login">Login</Link>
                 </div>
             </div>
         </div>
