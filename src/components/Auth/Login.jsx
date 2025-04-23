@@ -29,16 +29,16 @@ function Login() {
         <div className="form__container">
             <div className="form__content">
                 <div className="form__logo">Disgame</div>
-                <div className="form__title">Welcome back</div>
+                <div className="form__title">Ravi de vous revoir</div>
                 <div className="form__subtitle">
-                    Enter your credentials to access your account
+                    Entrez vos identifiants pour accéder à votre compte.
                 </div>
 
                 {error && <p>{error}</p>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form__group form__group-mb">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username">Nom d'utilisateur</label>
                         <input
                             type="text"
                             id="username"
@@ -51,9 +51,9 @@ function Login() {
 
                     <div className="form__group">
                         <div className="form__label-container">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Mot de passe</label>
                             <a className="form__forgot-password" href="#">
-                                Forgot password?
+                                Mot de passe oublié ?
                             </a>
                         </div>
 
@@ -70,13 +70,13 @@ function Login() {
                     <input
                         type="submit"
                         className="form__button"
-                        value={loading ? "Loading..." : "Login"}
+                        value={loading ? "Chargement..." : "Se connecter"}
                         disabled={loading}
                     />
                 </form>
 
                 <div className="form__infos">
-                    Don’t have an account? <Link to="/register">Register</Link>
+                    Vous n'avez pas de compte ? <Link to="/register">S'inscrire</Link>
                 </div>
             </div>
         </div>
