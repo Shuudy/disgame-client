@@ -7,15 +7,18 @@ function Register() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const { register } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
+        setLoading(true);
 
         if (password !== confirmPassword) {
             setError("Passwords do not match");
+            setLoading(false);
             return;
         }
 
@@ -24,6 +27,8 @@ function Register() {
             navigate("/login");
         } catch (err) {
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -80,7 +85,8 @@ function Register() {
                     <input
                         type="submit"
                         className="form__button"
-                        value="Register"
+                        value={loading ? "Loading..." : "Register"}
+                        disabled={loading}
                     />
                 </form>
 
