@@ -38,7 +38,7 @@ function Register() {
                 <div className="form__logo">Disgame</div>
                 <div className="form__title">Créer un compte</div>
                 <div className="form__subtitle">
-                    Remplissez les informations pour vous inscrire
+                    Remplissez les informations pour vous inscrire.
                 </div>
 
                 {error && <p>{error}</p>}
