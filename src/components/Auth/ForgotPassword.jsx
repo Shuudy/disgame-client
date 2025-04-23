@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login() {
+function ForgotPassword() {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -59,4 +59,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default ForgotPassword;
