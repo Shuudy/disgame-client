@@ -4,7 +4,7 @@ title: Getting Started
 
 # Getting Started
 
-Welcome to the Disgame documentation! This guide will help you set up and start using Disgame quickly.
+This guide will help you set up and start using Disgame quickly.
 
 ## Prerequisites
 

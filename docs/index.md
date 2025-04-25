@@ -4,22 +4,18 @@ layout: home
 
 hero:
   name: "Disgame"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  text: "Connects gamers with shared interests and playstyles."
+  tagline: Technical documentation for Disgame.
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Get Started
+      link: /getting-started
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Matchmaking for Gamers
+    details: Easily find players who share your interests, playstyles, and favorite games.
+  - title: Community-Driven
+    details: Join a vibrant community of gamers and participate in tournaments or events.
+  - title: Seamless Experience
+    details: Enjoy a user-friendly platform designed to connect you with the right players.
 ---
-
