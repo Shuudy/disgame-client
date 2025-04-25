@@ -46,7 +46,7 @@ function Footer() {
                 </div>
 
                 <div className="footer__separator"></div>
-                <div className="footer__copyright">&copy; 2025 Disgame. All rights reserved.</div>
+                <div className="footer__copyright">&copy; 2025 Disgame. Tous droits réservés.</div>
             </div>
         </div>
     );
