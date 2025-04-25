@@ -1,3 +1,31 @@
+## [0.6.0](https://github.com/Shuudy/disgame-client/compare/v0.5.0...v0.6.0) (2025-04-25)
+
+### Features
+
+* add ForgotPassword component and route ([574fc9a](https://github.com/Shuudy/disgame-client/commit/574fc9aa8735e6eba3d039873b1933ec641af850))
+* add loading state to Login component for improved user experience ([d91f91f](https://github.com/Shuudy/disgame-client/commit/d91f91f4e39a95de87539aa4762406403dc894c8))
+* add LoginUI component and form styles ([ac129a4](https://github.com/Shuudy/disgame-client/commit/ac129a4f525e4fad6dedb8328ca8b186096a4384))
+* add RegisterUI component for user registration ([f9ab07e](https://github.com/Shuudy/disgame-client/commit/f9ab07e7f15e9b8974ee1ae7748873a75abe791b))
+* add transition effect to card hover state in populargames component ([6ee78cc](https://github.com/Shuudy/disgame-client/commit/6ee78cc05c4659cfc330bcf1418ea9c878de9239))
+* enhance Login component UI with improved layout and styling ([30a9312](https://github.com/Shuudy/disgame-client/commit/30a9312d0c3d6b4838c581611bdb365fa04e023f))
+* **login:** update text to French for localization ([df37841](https://github.com/Shuudy/disgame-client/commit/df378413abda93dc81e0e144002c5c11dc24f883))
+* **register:** add loading state to registration form ([aa8d09f](https://github.com/Shuudy/disgame-client/commit/aa8d09f9d856d1f1bf1cc7e009d2559557be37e4))
+* **register:** implement styles for the registration form ([7c75b69](https://github.com/Shuudy/disgame-client/commit/7c75b697afc2327dbf6e7a3e7a6047b9e421ec2b))
+* **register:** update registration form text to French for localization ([76ea995](https://github.com/Shuudy/disgame-client/commit/76ea995b36d399b6a279970670fba6a7b14b1565))
+* use Link for navigation in forms ([98d6bc4](https://github.com/Shuudy/disgame-client/commit/98d6bc4b4b28547648870e043dc0f1fd313f294e))
+
+### Bug Fixes
+
+* add media query for max-height to adjust illustration width ([b250990](https://github.com/Shuudy/disgame-client/commit/b2509909b0006f0eddb0bef7ddd370e8ebed361f))
+* change input type from text to email in ForgotPassword component ([0fbf039](https://github.com/Shuudy/disgame-client/commit/0fbf0399a4af7cea2a2aa988d4fcc670341f4e03))
+* improve button hover and disabled states in form styles ([bb9e939](https://github.com/Shuudy/disgame-client/commit/bb9e939b2f7e19a934a7d7715ef73f19e3d13d92))
+* **register:** add missing period in registration form subtitle ([90d8325](https://github.com/Shuudy/disgame-client/commit/90d832505de659d005cec88f532c283fa3861f73))
+* remove commented font-size property in form styles ([b6312d9](https://github.com/Shuudy/disgame-client/commit/b6312d909c8ba4d2e0ba0caf996695d8dd1b9284))
+* remove unnecessary margin class from form group in ForgotPassword component ([f8e8bf8](https://github.com/Shuudy/disgame-client/commit/f8e8bf8a37ffc7106481214efa4c6e4d7ffb223d))
+* rename Login function to ForgotPassword in ForgotPassword component ([12fee8b](https://github.com/Shuudy/disgame-client/commit/12fee8b0c371ce78ec294c95a3846a711aeb1d05))
+* update copyright text to French in Footer component ([1047589](https://github.com/Shuudy/disgame-client/commit/1047589cfd15b53e9efa74b9a97c3b6d42f26517))
+* update forgot password link to use React Router's Link component ([ae9a1e8](https://github.com/Shuudy/disgame-client/commit/ae9a1e89dc3af1f716691006f947ff777bb2f7eb))
+
 ## [0.5.0](https://github.com/Shuudy/disgame-client/compare/v0.4.0...v0.5.0) (2025-04-20)
 
 ### Features
