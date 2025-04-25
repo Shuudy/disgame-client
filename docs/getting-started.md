@@ -38,10 +38,11 @@ Before you begin, ensure you have the following installed:
 
 5. Open the `.env` file and fill in the required environment variables:
     ```txt
-    PORT=3000
-    CORS_ORIGIN=http://127.0.0.1:3001
-    JWT_SECRET=your_jwt_secret
+    PORT=3000 # The port on which the server will run
+    CORS_ORIGIN=http://127.0.0.1:3001 The allowed origin for CORS (set to "*" for development)
+    JWT_SECRET=your_jwt_secret # Secret key used to sign JSON Web Tokens
 
+    # Database connection variables
     DB_HOST=
     DB_PORT=
     DB_USER=
@@ -93,4 +94,3 @@ Before you begin, ensure you have the following installed:
    ```sh
    http://localhost:5173
    ```
-   
