@@ -10,8 +10,8 @@ This guide will help you set up and start using Disgame quickly.
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** (version 16.x or higher)
-- **npm** (version 8.x or higher) or **yarn** (version 1.x or higher)
+- **Node.js** (version 18.x or higher)
+- **npm** (version 10.x or higher) or **yarn** (version 1.x or higher)
 - A modern web browser (e.g., Chrome, Firefox, Edge)
 
 ## Server Installation
