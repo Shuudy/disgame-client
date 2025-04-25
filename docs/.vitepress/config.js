@@ -3,26 +3,26 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Disgame",
-  description: "A VitePress Site",
+  description: "A web application that connects gamers looking to play the same games with others who share similar interests and playstyles.",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Getting Started', link: '/getting-started' },
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Introduction',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Overview', link: '/introduction' },
+          { text: 'Getting Started', link: '/getting-started' }
         ]
-      }
+      },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Shuudy/disgame-client', text: 'Client Repository' },
+      { icon: 'github', link: 'https://github.com/Shuudy/disgame-server', text: 'Server Repository' }
     ]
   }
 })
