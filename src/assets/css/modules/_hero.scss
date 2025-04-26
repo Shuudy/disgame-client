@@ -20,7 +20,7 @@
 
         @extend %container;
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 900px), screen and (max-height: 600px) {
             flex-direction: column;
             justify-content: center;
         }
@@ -38,7 +38,7 @@
             max-width: 560px;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 900px), screen and (max-height: 600px) {
             display: none;
         }
 
