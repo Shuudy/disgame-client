@@ -5,9 +5,13 @@
 
 .hero {
 
-    height: calc(100vh - variables.$navbar-height);
+    min-height: calc(100dvh - variables.$navbar-height);
+
+    display: flex;
+    align-items: center;
 
     &__content {
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -16,7 +20,7 @@
 
         @extend %container;
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 900px), screen and (max-height: 600px) {
             flex-direction: column;
             justify-content: center;
         }
@@ -34,7 +38,7 @@
             max-width: 560px;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 900px), screen and (max-height: 600px) {
             display: none;
         }
 
