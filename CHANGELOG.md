@@ -1,4 +1,10 @@
-## [0.6.1](https://github.com/Shuudy/disgame-client/compare/v0.5.0...v0.6.1) (2025-04-27)
+## [0.6.2](https://github.com/Shuudy/disgame-client/compare/v0.6.1...v0.6.2) (2025-04-27)
+
+### Bug Fixes
+
+* improve form responsiveness by replacing vh with dvh ([#46](https://github.com/Shuudy/disgame-client/pull/46))
+
+## [0.6.1](https://github.com/Shuudy/disgame-client/compare/v0.6.0...v0.6.1) (2025-04-27)
 
 ### Bug Fixes
 
