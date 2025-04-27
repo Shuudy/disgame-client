@@ -1,3 +1,9 @@
+## [0.6.1](https://github.com/Shuudy/disgame-client/compare/v0.5.0...v0.6.1) (2025-04-27)
+
+### Bug Fixes
+
+* improve hero section responsiveness ([#43](https://github.com/Shuudy/disgame-client/pull/43))
+
 ## [0.6.0](https://github.com/Shuudy/disgame-client/compare/v0.5.0...v0.6.0) (2025-04-25)
 
 ### Features
