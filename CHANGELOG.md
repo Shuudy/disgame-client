@@ -1,3 +1,9 @@
+## [0.6.3](https://github.com/Shuudy/disgame-client/compare/v0.6.2...v0.6.3) (2025-04-28)
+
+### Bug Fixes
+
+* add font-family to button and unify font size for related elements ([#49](https://github.com/Shuudy/disgame-client/pull/49))
+
 ## [0.6.2](https://github.com/Shuudy/disgame-client/compare/v0.6.1...v0.6.2) (2025-04-27)
 
 ### Bug Fixes
