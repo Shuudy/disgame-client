@@ -10,6 +10,7 @@ import Parties from "./components/Games/Parties";
 import CreateParty from "./components/Games/CreateParty";
 import NotFound from "./components/Errors/NotFound";
 import "./assets/css/app.scss";
+import PartyChat from "./components/Games/PartyChat";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                             path="games/:id/create"
                             element={<CreateParty />}
                         />
+                        <Route path="games/:id/party/:partyId" element={<PartyChat />} />
                     </Route>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
