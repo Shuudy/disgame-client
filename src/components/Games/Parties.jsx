@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import PartyChat from "./PartyChat";
 
 function Parties() {
     const [parties, setParties] = useState([]);
     const [error, setError] = useState(null);
-    const [selectedParty, setSelectedParty] = useState(null);
     const [filterLang, setFilterLang] = useState("");
     const [filterStyle, setFilterStyle] = useState("");
     const { id } = useParams();
     const { user } = useAuth();
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchParties = async () => {
@@ -26,7 +25,7 @@ function Parties() {
                         },
                     },
                 );
-    
+
                 if (response.status === 404) {
                     setError("No parties found for this game.");
                     return;
@@ -44,7 +43,7 @@ function Parties() {
     }, [id, user.token]);
 
     const handleSelectParty = (party) => {
-        setSelectedParty(party);
+        navigate(`/games/${id}/party/${party.id}`);
     };
 
     const filteredParties = parties.filter(
@@ -55,49 +54,42 @@ function Parties() {
 
     return (
         <div>
-            {!selectedParty ? (
-                <>
-                    <h1>Parties</h1>
-                    <Link to={`/games/${id}/create`}>
-                        <button>Create a Party</button>
-                    </Link>
+            <h1>Parties</h1>
+            <Link to={`/games/${id}/create`}>
+                <button>Create a Party</button>
+            </Link>
 
-                    <div>
-                        <select onChange={(e) => setFilterLang(e.target.value)}>
-                            <option value="">All Languages</option>
-                            <option value="fr">French</option>
-                            <option value="en">English</option>
-                            <option value="es">Spanish</option>
-                        </select>
+            <div>
+                <select onChange={(e) => setFilterLang(e.target.value)}>
+                    <option value="">All Languages</option>
+                    <option value="fr">French</option>
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
 
-                        <select
-                            onChange={(e) => setFilterStyle(e.target.value)}
-                        >
-                            <option value="">All Styles</option>
-                            <option value="casual">Casual</option>
-                            <option value="competitive">Competitive</option>
-                        </select>
-                    </div>
+                <select onChange={(e) => setFilterStyle(e.target.value)}>
+                    <option value="">All Styles</option>
+                    <option value="casual">Casual</option>
+                    <option value="competitive">Competitive</option>
+                </select>
+            </div>
 
-                    {loading ? (
-                        <p>Loading parties...</p>
-                    ) : error ? (
-                        <p>{error}</p>
-                    ) : (
-                        <ul>
-                            {filteredParties.map((party) => (
-                                <li
-                                    key={party.id}
-                                    onClick={() => handleSelectParty(party)}
-                                >
-                                    {party.name} - {party.lang} - {party.style} - {party.maxPlayers} players max
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </>
+            {loading ? (
+                <p>Loading parties...</p>
+            ) : error ? (
+                <p>{error}</p>
             ) : (
-                <PartyChat party={selectedParty} />
+                <ul>
+                    {filteredParties.map((party) => (
+                        <li
+                            key={party.id}
+                            onClick={() => handleSelectParty(party)}
+                        >
+                            {party.name} - {party.lang} - {party.style} -{" "}
+                            {party.maxPlayers} players max
+                        </li>
+                    ))}
+                </ul>
             )}
         </div>
     );

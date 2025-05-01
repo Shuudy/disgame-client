@@ -1,17 +1,48 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { io } from "socket.io-client";
-import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 
-function PartyChat({ party }) {
+function PartyChat() {
+    const { partyId } = useParams();
     const { user } = useAuth();
     const [socket, setSocket] = useState(null);
     const [error, setError] = useState(null);
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [players, setPlayers] = useState([]);
+    const [party, setParty] = useState(null);
 
     useEffect(() => {
+        const fetchPartyDetails = async () => {
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/party/${partyId}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user.token}`,
+                        },
+                    },
+                );
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch party details");
+                }
+
+                const data = await response.json();
+                setParty(data);
+            } catch (error) {
+                console.error("Error fetching party details:", error);
+                setError("Failed to fetch party details.");
+            }
+        };
+
+        fetchPartyDetails();
+    }, [partyId, user.token]);
+
+    useEffect(() => {
+        if (!party) return;
+
         const socketInstance = io(import.meta.env.VITE_SOCKET_URL, {
             auth: {
                 token: user.token,
@@ -67,7 +98,7 @@ function PartyChat({ party }) {
         return () => {
             socketInstance.disconnect();
         };
-    }, [user.token, party.id]);
+    }, [party, user.token]);
 
     if (error) {
         return <div>Error: {error}</div>;
@@ -81,52 +112,51 @@ function PartyChat({ party }) {
 
     return (
         <div>
-            <h2>Chat for {party.name}</h2>
-            <div>
-                <h3>Players in the Party</h3>
-                <ul>
-                    {players.map((player, index) => (
-                        <li key={index}>{player.username}</li>
-                    ))}
-                </ul>
-            </div>
-            <div>
-                {messages.map((message, index) => (
-                    <div key={index}>
-                        <strong>{message.username}</strong>: {message.content} -{" "}
-                        {message.timestamp
-                            ? new Date(message.timestamp).toLocaleTimeString(
-                                  "fr-FR",
-                                  {
-                                      hour: "2-digit",
-                                      minute: "2-digit",
-                                  },
-                              )
-                            : "Invalid time"}
+            {party ? (
+                <>
+                    <h2>Chat for {party.name}</h2>
+                    <div>
+                        <h3>Players in the Party</h3>
+                        <ul>
+                            {players.map((player, index) => (
+                                <li key={index}>{player.username}</li>
+                            ))}
+                        </ul>
                     </div>
-                ))}
-            </div>
-            <input
-                type="text"
-                placeholder="Type your message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                        handleSendMessage();
-                    }
-                }}
-            />
-            <button onClick={() => handleSendMessage()}>Send</button>
+                    <div>
+                        {messages.map((message, index) => (
+                            <div key={index}>
+                                <strong>{message.username}</strong>:{" "}
+                                {message.content} -{" "}
+                                {message.timestamp
+                                    ? new Date(
+                                          message.timestamp,
+                                      ).toLocaleTimeString("fr-FR", {
+                                          hour: "2-digit",
+                                          minute: "2-digit",
+                                      })
+                                    : "Invalid time"}
+                            </div>
+                        ))}
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Type your message..."
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                handleSendMessage();
+                            }
+                        }}
+                    />
+                    <button onClick={() => handleSendMessage()}>Send</button>
+                </>
+            ) : (
+                <p>Loading party details...</p>
+            )}
         </div>
     );
 }
-
-PartyChat.propTypes = {
-    party: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-    }).isRequired,
-};
 
 export default PartyChat;
