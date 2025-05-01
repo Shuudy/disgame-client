@@ -105,6 +105,8 @@ function PartyChat() {
     }
 
     const handleSendMessage = () => {
+        if (!message.trim()) return; // Prevent sending empty messages
+        
         console.log("Sending message", message);
         socket.emit("sendMessage", { message });
         setMessage("");
