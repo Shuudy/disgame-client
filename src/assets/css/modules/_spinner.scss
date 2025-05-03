@@ -1,0 +1,30 @@
+
+@use '../utils/colors';
+
+.loading-spinner {
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100dvh;
+    }
+
+    &__spinner {
+        border: 4px solid colors.$color-base-background;
+        border-top-color: colors.$color-primary;
+
+        border-radius: 9999px;
+
+        width: 2rem;
+        height: 2rem;
+
+        animation: loading-spinner 1s linear infinite;
+    }
+}
+
+@keyframes loading-spinner {
+    100% {
+        transform: rotate(360deg);
+    }
+}
