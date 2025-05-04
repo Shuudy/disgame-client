@@ -29,6 +29,12 @@ export default defineConfig({
                     { text: "Getting Started", link: "/getting-started" },
                 ],
             },
+            {
+                text: "Guides",
+                items: [
+                    { text: "Deployment Process", link: "/deployment" },
+                ],
+            },
         ],
 
         socialLinks: [
