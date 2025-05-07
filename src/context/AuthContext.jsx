@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
             setUser({ token: data.token });
             localStorage.setItem("token", data.token);
         } else {
-            throw new Error("Login failed. Please check your credentials.");
+            throw new Error("Échec de la connexion. Veuillez vérifier vos identifiants.");
         }
     };
 
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
             },
         );
         if (!response.ok) {
-            throw new Error("Registration failed. Please try again.");
+            throw new Error("Échec de l’inscription. Veuillez réessayer.");
         }
     };
 
