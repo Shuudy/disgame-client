@@ -119,4 +119,8 @@
     &__subtitle, &__group label, &__forgot-password, &__infos, &__button {
         font-size: .875rem;
     }
+
+    &__error {
+        color: colors.$color-error;
+    }
 }

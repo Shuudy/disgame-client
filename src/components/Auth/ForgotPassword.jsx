@@ -32,7 +32,7 @@ function ForgotPassword() {
                     Entrez votre adresse email pour réinitialiser votre mot de passe.
                 </div>
 
-                {error && <p>{error}</p>}
+                {error && <p className="form__error">{error}</p>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form__group">

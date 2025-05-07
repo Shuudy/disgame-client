@@ -41,7 +41,7 @@ function Register() {
                     Remplissez les informations pour vous inscrire.
                 </div>
 
-                {error && <p>{error}</p>}
+                {error && <p className="form__error">{error}</p>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form__group form__group-mb">
