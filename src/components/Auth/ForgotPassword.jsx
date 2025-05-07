@@ -14,7 +14,7 @@ function ForgotPassword() {
             const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             await sleep(1000);
 
-            throw new Error("Invalid email");
+            throw new Error("Adresse e-mail invalide.");
             //navigate("/login");
         } catch (err) {
             setError(err.message);
