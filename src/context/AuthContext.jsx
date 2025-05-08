@@ -34,6 +34,10 @@ export const AuthProvider = ({ children }) => {
             },
         );
 
+        if (response.status === 429) {
+            throw new Error("Trop de tentatives de connexion. Veuillez réessayer plus tard.");
+        }
+
         const data = await response.json();
         if (data.token) {
             setUser({ token: data.token });
@@ -52,6 +56,11 @@ export const AuthProvider = ({ children }) => {
                 body: JSON.stringify({ username, password }),
             },
         );
+        
+        if (response.status === 429) {
+            throw new Error("Trop de tentatives d’inscription. Veuillez réessayer plus tard.");
+        }
+
         if (!response.ok) {
             throw new Error("Échec de l’inscription. Veuillez réessayer.");
         }
