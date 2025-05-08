@@ -86,7 +86,7 @@ function Parties() {
                             onClick={() => handleSelectParty(party)}
                         >
                             {party.name} - {party.lang} - {party.style} -{" "}
-                            {party.maxPlayers} players max
+                            {party.maxPlayers} players max - Host: {party.host?.username}
                         </li>
                     ))}
                 </ul>

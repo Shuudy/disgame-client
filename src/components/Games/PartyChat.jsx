@@ -116,7 +116,7 @@ function PartyChat() {
         <div>
             {party ? (
                 <>
-                    <h2>Chat for {party.name}</h2>
+                    <h2>Chat for {party.name} - Host: {party.host?.username}</h2>
                     <div>
                         <h3>Players in the Party</h3>
                         <ul>
