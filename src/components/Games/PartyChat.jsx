@@ -72,6 +72,7 @@ function PartyChat() {
         socketInstance.on("previousMessages", (fetchedMessages) => {
             setMessages(
                 fetchedMessages.map((msg) => ({
+                    type: "message",
                     username: msg.user.username,
                     content: msg.message,
                     timestamp: msg.timestamp,
@@ -84,6 +85,7 @@ function PartyChat() {
             setMessages((prevMessages) => [
                 ...prevMessages,
                 {
+                    type: "message",
                     username: newMessage.user.username,
                     content: newMessage.message,
                     timestamp: newMessage.timestamp,
@@ -97,7 +99,7 @@ function PartyChat() {
             setMessages((prevMessages) => [
                 ...prevMessages,
                 {
-                    username: "System",
+                    type: "playerJoined",
                     content: `${newPlayer.username} has joined the party.`,
                     timestamp: Date.now(),
                 },
@@ -112,7 +114,7 @@ function PartyChat() {
             setMessages((prevMessages) => [
                 ...prevMessages,
                 {
-                    username: "System",
+                    type: "playerLeft",
                     content: `${player.username} has left the party.`,
                     timestamp: Date.now(),
                 },
@@ -154,16 +156,33 @@ function PartyChat() {
                     <div>
                         {messages.map((message, index) => (
                             <div key={index}>
-                                <strong>{message.username}</strong>:{" "}
-                                {message.content} -{" "}
-                                {message.timestamp
-                                    ? new Date(
-                                          message.timestamp,
-                                      ).toLocaleTimeString("fr-FR", {
-                                          hour: "2-digit",
-                                          minute: "2-digit",
-                                      })
-                                    : "Invalid time"}
+                                {message.type === "message" ? (
+                                    <>
+                                        <strong>{message.username}</strong>:{" "}
+                                        {message.content} -{" "}
+                                        {message.timestamp
+                                            ? new Date(
+                                                  message.timestamp,
+                                              ).toLocaleTimeString("fr-FR", {
+                                                  hour: "2-digit",
+                                                  minute: "2-digit",
+                                              })
+                                            : "Invalid time"}
+                                    </>
+                                ) : message.type === "playerJoined" ||
+                                  message.type === "playerLeft" ? (
+                                    <>
+                                        {message.content} -{" "}
+                                        {message.timestamp
+                                            ? new Date(
+                                                  message.timestamp,
+                                              ).toLocaleTimeString("fr-FR", {
+                                                  hour: "2-digit",
+                                                  minute: "2-digit",
+                                              })
+                                            : "Invalid time"}
+                                    </>
+                                ) : null}
                             </div>
                         ))}
                     </div>
