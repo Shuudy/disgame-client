@@ -63,6 +63,7 @@ function PartyChat() {
                         setError(response.message);
                     } else {
                         console.log(`Joined party with ID: ${party.id}`);
+                        setPlayers(response.players);
                     }
                 },
             );
@@ -90,9 +91,32 @@ function PartyChat() {
             ]);
         });
 
-        socketInstance.on("updatePlayers", (playerList) => {
-            console.log("Updated player list:", playerList);
-            setPlayers(playerList);
+        socketInstance.on("playerJoined", (newPlayer) => {
+            console.log("Player joined:", newPlayer);
+            setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                {
+                    username: "System",
+                    content: `${newPlayer.username} has joined the party.`,
+                    timestamp: Date.now(),
+                },
+            ]);
+        });
+
+        socketInstance.on("playerLeft", (player) => {
+            console.log("Player left:", player);
+            setPlayers((prevPlayers) =>
+                prevPlayers.filter((p) => p.id !== player.id),
+            );
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                {
+                    username: "System",
+                    content: `${player.username} has left the party.`,
+                    timestamp: Date.now(),
+                },
+            ]);
         });
 
         return () => {
@@ -106,7 +130,7 @@ function PartyChat() {
 
     const handleSendMessage = () => {
         if (!message.trim()) return; // Prevent sending empty messages
-        
+
         console.log("Sending message", message);
         socket.emit("sendMessage", { message });
         setMessage("");
@@ -116,7 +140,9 @@ function PartyChat() {
         <div>
             {party ? (
                 <>
-                    <h2>Chat for {party.name} - Host: {party.host?.username}</h2>
+                    <h2>
+                        Chat for {party.name} - Host: {party.host?.username}
+                    </h2>
                     <div>
                         <h3>Players in the Party</h3>
                         <ul>
