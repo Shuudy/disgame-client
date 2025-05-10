@@ -12,9 +12,9 @@ export const AuthProvider = ({ children }) => {
         const checkAuth = async () => {
             const token = localStorage.getItem("token");
             if (token) {
-                const isValid = await validateToken(token);
-                if (isValid) {
-                    setUser({ token });
+                const userData = await validateToken(token);
+                if (userData) {
+                    setUser({ ...userData, token });
                 } else {
                     localStorage.removeItem("token");
                 }
@@ -39,8 +39,8 @@ export const AuthProvider = ({ children }) => {
         }
 
         const data = await response.json();
-        if (data.token) {
-            setUser({ token: data.token });
+        if (data.token && data.user) {
+            setUser({ ...data.user, token: data.token });
             localStorage.setItem("token", data.token);
         } else {
             throw new Error("Échec de la connexion. Veuillez vérifier vos identifiants.");
