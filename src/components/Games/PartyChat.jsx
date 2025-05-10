@@ -157,18 +157,41 @@ function PartyChat() {
                         {messages.map((message, index) => (
                             <div key={index}>
                                 {message.type === "message" ? (
-                                    <>
-                                        <strong>{message.username}</strong>:{" "}
-                                        {message.content} -{" "}
-                                        {message.timestamp
-                                            ? new Date(
-                                                  message.timestamp,
-                                              ).toLocaleTimeString("fr-FR", {
-                                                  hour: "2-digit",
-                                                  minute: "2-digit",
-                                              })
-                                            : "Invalid time"}
-                                    </>
+                                    // Display this message if it comes from the logged-in user
+                                    message.username === user.username ? (
+                                        <>
+                                            <strong>Vous</strong>:{" "}
+                                            {message.content} -{" "}
+                                            {message.timestamp
+                                                ? new Date(
+                                                      message.timestamp,
+                                                  ).toLocaleTimeString(
+                                                      "fr-FR",
+                                                      {
+                                                          hour: "2-digit",
+                                                          minute: "2-digit",
+                                                      },
+                                                  )
+                                                : "Invalid time"}
+                                        </>
+                                    ) : (
+                                        // Display this message if it comes from someone other than the logged-in user
+                                        <>
+                                            <strong>{message.username}</strong>:{" "}
+                                            {message.content} -{" "}
+                                            {message.timestamp
+                                                ? new Date(
+                                                      message.timestamp,
+                                                  ).toLocaleTimeString(
+                                                      "fr-FR",
+                                                      {
+                                                          hour: "2-digit",
+                                                          minute: "2-digit",
+                                                      },
+                                                  )
+                                                : "Invalid time"}
+                                        </>
+                                    )
                                 ) : message.type === "playerJoined" ||
                                   message.type === "playerLeft" ? (
                                     <>
