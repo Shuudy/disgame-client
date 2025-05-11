@@ -12,8 +12,9 @@ export const AuthProvider = ({ children }) => {
         const checkAuth = async () => {
             const token = localStorage.getItem("token");
             if (token) {
-                const userData = await validateToken(token);
-                if (userData) {
+                const response = await validateToken(token);
+                if (response.ok) {
+                    const userData = await response.json();
                     setUser({ ...userData, token });
                 } else {
                     localStorage.removeItem("token");
