@@ -6,5 +6,5 @@ export const validateToken = async (token) => {
         },
     );
 
-    return response.ok;
+    return response;
 };

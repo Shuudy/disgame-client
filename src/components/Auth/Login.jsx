@@ -34,7 +34,7 @@ function Login() {
                     Entrez vos identifiants pour accéder à votre compte.
                 </div>
 
-                {error && <p>{error}</p>}
+                {error && <p className="form__error">{error}</p>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form__group form__group-mb">

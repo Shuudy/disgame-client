@@ -12,9 +12,10 @@ export const AuthProvider = ({ children }) => {
         const checkAuth = async () => {
             const token = localStorage.getItem("token");
             if (token) {
-                const isValid = await validateToken(token);
-                if (isValid) {
-                    setUser({ token });
+                const response = await validateToken(token);
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUser({ ...userData, token });
                 } else {
                     localStorage.removeItem("token");
                 }
@@ -34,12 +35,16 @@ export const AuthProvider = ({ children }) => {
             },
         );
 
+        if (response.status === 429) {
+            throw new Error("Trop de tentatives de connexion. Veuillez réessayer plus tard.");
+        }
+
         const data = await response.json();
-        if (data.token) {
-            setUser({ token: data.token });
+        if (data.token && data.user) {
+            setUser({ ...data.user, token: data.token });
             localStorage.setItem("token", data.token);
         } else {
-            throw new Error("Login failed. Please check your credentials.");
+            throw new Error("Échec de la connexion. Veuillez vérifier vos identifiants.");
         }
     };
 
@@ -52,8 +57,13 @@ export const AuthProvider = ({ children }) => {
                 body: JSON.stringify({ username, password }),
             },
         );
+        
+        if (response.status === 429) {
+            throw new Error("Trop de tentatives d’inscription. Veuillez réessayer plus tard.");
+        }
+
         if (!response.ok) {
-            throw new Error("Registration failed. Please try again.");
+            throw new Error("Échec de l’inscription. Veuillez réessayer.");
         }
     };
 

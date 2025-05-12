@@ -61,10 +61,9 @@ function CreateParty() {
                     }),
                 },
             );
+            const newParty = await response.json();
 
-            console.log(response);
-
-            navigate(`/games/${id}`);
+            navigate(`/games/${id}/party/${newParty.id}`);
         } catch (error) {
             console.error("Error creating party:", error);
             setError(error.message);

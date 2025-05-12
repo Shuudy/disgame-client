@@ -14,7 +14,7 @@ function ForgotPassword() {
             const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             await sleep(1000);
 
-            throw new Error("Invalid email");
+            throw new Error("Adresse e-mail invalide.");
             //navigate("/login");
         } catch (err) {
             setError(err.message);
@@ -32,7 +32,7 @@ function ForgotPassword() {
                     Entrez votre adresse email pour réinitialiser votre mot de passe.
                 </div>
 
-                {error && <p>{error}</p>}
+                {error && <p className="form__error">{error}</p>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form__group">

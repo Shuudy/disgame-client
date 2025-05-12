@@ -32,8 +32,10 @@
     }
 
     &__content {
-        background-color: #111827;
+        background-color: colors.$color-base-background;
         padding: 1.5rem;
+
+        border-radius: 6px;
     }
 
     &__group {
@@ -116,5 +118,9 @@
 
     &__subtitle, &__group label, &__forgot-password, &__infos, &__button {
         font-size: .875rem;
+    }
+
+    &__error {
+        color: colors.$color-error;
     }
 }
