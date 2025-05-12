@@ -1,3 +1,30 @@
+## [0.7.0](https://github.com/Shuudy/disgame-client/compare/v0.6.0...v0.7.0) (2025-05-12)
+
+### Features
+
+* add color variable for base background ([3ad7044](https://github.com/Shuudy/disgame-client/commit/3ad7044c9e2e10e3589f6c0df7fd4ae335258722))
+* add dedicated route for PartyChat component ([1404f62](https://github.com/Shuudy/disgame-client/commit/1404f620cfe6988263c402b560db0ffaca216121))
+* add error message styling to forms ([ebdc274](https://github.com/Shuudy/disgame-client/commit/ebdc2743e91b0ad4bbc8c8d36890586f9bb85b78))
+* add rate limit error handling for login and registration ([9969863](https://github.com/Shuudy/disgame-client/commit/9969863c65f7536a5325fb148c24dfb7ee7fa4d9))
+* categorize messages in PartyChat by type for improved display ([6741aa0](https://github.com/Shuudy/disgame-client/commit/6741aa0732ef3be012eb260b90cc20c8e7836ffa))
+* display party host username in Parties and PartyChat components ([8a48147](https://github.com/Shuudy/disgame-client/commit/8a48147c970fc72d0503467410edca48ec0a1ba6))
+* enhance message display in PartyChat to differentiate between user and others ([9726843](https://github.com/Shuudy/disgame-client/commit/9726843b2e642dc3e81ef1eb2da057346cd22a6c))
+* handle player join and leave events in PartyChat component ([28282f3](https://github.com/Shuudy/disgame-client/commit/28282f3e8f54013b4da83954fb2358d82135e8c9))
+* implement loading spinner component for improved user experience ([873b66f](https://github.com/Shuudy/disgame-client/commit/873b66f8e2802afe15c74491775873c682907eba))
+* improve user data handling in AuthProvider for login and token validation ([3c8658e](https://github.com/Shuudy/disgame-client/commit/3c8658e522ecb780f8cbdaa07055a2ed56b872a4))
+* prevent sending empty messages in PartyChat ([20680c4](https://github.com/Shuudy/disgame-client/commit/20680c49e4b51af59ccbb26e021c6cc954029328))
+* redirect to PartyChat after creating a new party ([5f4c060](https://github.com/Shuudy/disgame-client/commit/5f4c060d3ae7248a46f23057447d024d3eb0e5ab))
+* update background color in form and promo components to use color variable ([a070320](https://github.com/Shuudy/disgame-client/commit/a0703201e1b3ad49f9165dae7a4f9548a5f0eab1))
+* update error messages to French in authentication components ([3bfb4c7](https://github.com/Shuudy/disgame-client/commit/3bfb4c71193bf4253215b0181088377d32f6d6d9))
+* update token validation logic to return full response for better error handling ([d1fb35c](https://github.com/Shuudy/disgame-client/commit/d1fb35c5ad57fcc22d1818f00c6c4252a36a52ed))
+
+### Bug Fixes
+
+* add border-radius to form content for consistent styling ([9061623](https://github.com/Shuudy/disgame-client/commit/9061623536bd1a9eb3cc6479cba09750f8004d32))
+* add font-family to button and unify font size for related elements ([a0b7da8](https://github.com/Shuudy/disgame-client/commit/a0b7da8b38fe7d1d2c4261d5978bd2427c76d79b))
+* adjust hero section height and layout properties ([bda4e26](https://github.com/Shuudy/disgame-client/commit/bda4e26abb7336e388bfe46c12448a4e4c590244))
+* update media queries for responsive layout in hero section ([d3877c0](https://github.com/Shuudy/disgame-client/commit/d3877c092aadb6d7dd48002083655ae54efe7ff1))
+* update min-height to use 100dvh for better responsiveness ([f16d89f](https://github.com/Shuudy/disgame-client/commit/f16d89fb0df7d03a18eddebce0ce419faf727ea0))
 ## [0.6.3](https://github.com/Shuudy/disgame-client/compare/v0.6.2...v0.6.3) (2025-04-28)
 
 ### Bug Fixes
