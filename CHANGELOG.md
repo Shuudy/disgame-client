@@ -1,3 +1,8 @@
+## [0.7.1](https://github.com/Shuudy/disgame-client/compare/v0.7.0...v0.7.1) (2025-05-14)
+
+### Features
+
+* add error handling for party creation response ([6041ccc](https://github.com/Shuudy/disgame-client/commit/6041ccc1e65012e4b1c081628655aa2229d7c1d0))
 ## [0.7.0](https://github.com/Shuudy/disgame-client/compare/v0.6.0...v0.7.0) (2025-05-12)
 
 ### Features
