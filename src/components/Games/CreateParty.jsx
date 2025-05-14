@@ -61,6 +61,10 @@ function CreateParty() {
                     }),
                 },
             );
+
+            if (!response.ok) {
+                throw new Error("Failed to create party");
+            }
             const newParty = await response.json();
 
             navigate(`/games/${id}/party/${newParty.id}`);
