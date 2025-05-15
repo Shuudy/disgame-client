@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-function PopularGamesCard({ title, players, image }) {
+function PopularGamesCard({ id, title, players, image }) {
     return (
-        <a href="#" className="populargames__content-card">
+        <Link to={`/games/${id}`} className="populargames__content-card">
             <div
                 className="populargames__content-card-image"
                 style={{
@@ -20,7 +21,7 @@ function PopularGamesCard({ title, players, image }) {
                     {players}
                 </div>
             </div>
-        </a>
+        </Link>
     );
 }
 
