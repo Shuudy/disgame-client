@@ -17,7 +17,7 @@ function PopularGames() {
                 }
                 const data = await response.json();
                 setPopularGames(data);
-            } catch (error) {
+            } catch {
                 setError(
                     "Failed to fetch popular games. Please try again later.",
                 );

@@ -26,6 +26,7 @@ function PopularGamesCard({ id, title, players, image }) {
 }
 
 PopularGamesCard.propTypes = {
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     players: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
