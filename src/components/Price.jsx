@@ -1,5 +1,6 @@
 import Navbar from "./UI/Navbar";
 import Footer from "./UI/Footer";
+import { Link } from "react-router-dom";
 
 function Price() {
     const infos = {
@@ -63,9 +64,9 @@ function Price() {
                         </div>
 
                         <div className="price__card-button">
-                            <a href="" className="form__button">
+                            <Link to="/register" className="form__button">
                                 Créer un compte
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="price__card-infos">
