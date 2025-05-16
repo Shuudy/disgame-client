@@ -1,0 +1,40 @@
+
+.party-chat {
+    display: flex;
+    height: 100dvh;
+
+    &__sidebar {
+        width: 20%;
+        background-color: #ff0000;
+        padding: 1rem;
+    }
+
+    &__messages {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+    }
+
+    &__main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: #000000;
+    }
+}
+
+@media (max-width: 768px) {
+    .party-chat {
+        flex-direction: column;
+
+        &__sidebar {
+            width: 100%;
+        }
+
+        &__main {
+            flex: 1;
+        }
+    }
+}
