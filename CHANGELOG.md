@@ -1,3 +1,13 @@
+## [0.8.0](https://github.com/Shuudy/disgame-client/compare/v0.7.1...v0.8.0) (2025-05-16)
+
+### Features
+
+* implement fetching of popular games from API and update UI accordingly ([b6f2454](https://github.com/Shuudy/disgame-client/commit/b6f2454b6169dcd7663b171bb8ed431c29a3173e))
+
+### Bug Fixes
+
+* simplify error handling in fetch for popular games ([e590a0e](https://github.com/Shuudy/disgame-client/commit/e590a0e9639e9b0e3b2624324b5683bbfdaf9b11))
+* update PopularGamesCard to use Link component for navigation ([55cf7b2](https://github.com/Shuudy/disgame-client/commit/55cf7b2404087bc06050d77bbffbf27a40697cce))
 ## [0.7.1](https://github.com/Shuudy/disgame-client/compare/v0.7.0...v0.7.1) (2025-05-14)
 
 ### Features
