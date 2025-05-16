@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Promo() {
     return (
         <div className="promo">
@@ -10,18 +12,18 @@ function Promo() {
                     discutent et jouent ensemble sur Disgame.
                 </div>
                 <div className="promo__content-ctas">
-                    <a
-                        href="#"
+                    <Link
+                        to="/register"
                         className="promo__content-cta promo__content-cta-start"
                     >
                         Créer un compte gratuit
-                    </a>
-                    <a
-                        href="#"
+                    </Link>
+                    <Link
+                        to="/games"
                         className="promo__content-cta promo__content-cta-explore"
                     >
                         Explorer les jeux
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
