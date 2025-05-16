@@ -1,0 +1,75 @@
+@use '../utils/colors';
+
+.price {
+
+    &__cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 32px;
+
+        margin-bottom: 80px;
+    }
+
+    &__card {
+        background-color: colors.$color-base-background;
+        width: 494px;
+        border-radius: 6px;
+
+        &-header, &-infos {
+            padding: 1.5rem;
+        }
+
+        &-button a {
+            display: flex;
+            justify-content: center;
+        }
+
+        &-header {
+            border-bottom: 1px solid colors.$border-color;
+        }
+        
+        &-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        &-subtitle {
+            color: colors.$populargames-number-color;
+            margin-top: 4px;
+            margin-bottom: 1rem;
+        }
+
+        &-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            &-icon {
+                display: flex;
+                align-items: center;
+            }
+
+            &-title-crossed {
+                text-decoration: line-through;
+                color: colors.$color-gray;
+            }
+        }
+
+        &-infos {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        &-price-amount, &-price-currency {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        &-price-period {
+            margin-left: 8px;
+            color: colors.$populargames-number-color;
+        }
+    }
+}
