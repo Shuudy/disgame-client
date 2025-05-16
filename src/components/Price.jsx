@@ -82,9 +82,9 @@ function Price() {
                                         <path
                                             d="M16.6666 5L7.49992 14.1667L3.33325 10"
                                             stroke="#6D28D9"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
                                         />
                                     </svg>
                                 </div>
@@ -108,16 +108,16 @@ function Price() {
                                             <path
                                                 d="M15 5L5 15"
                                                 stroke="#4B5563"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
                                             />
                                             <path
                                                 d="M5 5L15 15"
                                                 stroke="#4B5563"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
                                             />
                                         </svg>
                                     </div>
@@ -168,9 +168,9 @@ function Price() {
                                         <path
                                             d="M16.6666 5L7.49992 14.1667L3.33325 10"
                                             stroke="#6D28D9"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
                                         />
                                     </svg>
                                 </div>
