@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Error({ code, title, message }) {
     return (
@@ -13,5 +14,11 @@ function Error({ code, title, message }) {
         </div>
     );
 }
+
+Error.propTypes = {
+    code: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+};
 
 export default Error;
