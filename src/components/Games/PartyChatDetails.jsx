@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function PartyChatDetails({ playerCount, style }) {
     return (
         <div className="party-chat__partydetails">
@@ -93,5 +95,10 @@ function PartyChatDetails({ playerCount, style }) {
         </div>
     );
 }
+
+PartyChatDetails.propTypes = {
+    playerCount: PropTypes.string.isRequired,
+    style: PropTypes.string.isRequired,
+};
 
 export default PartyChatDetails;
