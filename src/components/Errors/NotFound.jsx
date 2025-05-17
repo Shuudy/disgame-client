@@ -1,8 +1,13 @@
+import Error from "./Error";
+
 function NotFound() {
     return (
-        <div>
-            <h1>404 Not Found</h1>
-        </div>
+        <Error
+            code="404"
+            title="Désolé, nous n'avons pas pu trouver cette page."
+            message="Mais ne vous inquiétez pas, vous pouvez trouver plein d'autres
+                choses sur notre page d'accueil."
+        />
     );
 }
 
