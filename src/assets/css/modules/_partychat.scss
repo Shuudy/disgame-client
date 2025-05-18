@@ -156,7 +156,7 @@
 
     &__sidebar {
         width: 255px;
-        background-color: #111826;
+        background-color: rgba(17, 24, 39, .8);
         padding: 1rem;
         overflow-y: auto;
 
@@ -196,7 +196,7 @@
             }
 
             &-name {
-                font-weight: 600;
+                font-weight: 500;
             }
         }
     }
@@ -205,6 +205,8 @@
         flex: 1;
         overflow-y: auto;
         margin-bottom: 1rem;
+        padding: 1rem;
+        padding-bottom: 0;
 
         display: flex;
         flex-direction: column;
@@ -283,7 +285,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 1rem;
         padding-top: 0;
         background-color: #000000;
     }
@@ -291,6 +292,8 @@
     &__input {
         display: flex;
         gap: 8px;
+        padding: 1rem;
+        padding-top: 0;
 
         input {
             flex: 1;
