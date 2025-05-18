@@ -124,6 +124,7 @@
             &-text {
                 font-size: 14px;
                 color: #d1d5db;
+                text-transform: capitalize;
             }
         }
     }
@@ -154,7 +155,7 @@
     }
 
     &__sidebar {
-        width: 20%;
+        width: 255px;
         background-color: #111826;
         padding: 1rem;
         overflow-y: auto;
@@ -162,6 +163,7 @@
         &-left {
             display: flex;
             flex-direction: column;
+            width: 287px;
         }
 
         &-title {
@@ -230,6 +232,10 @@
 
         &-me {
             flex-direction: row-reverse;
+
+            .party-chat__message-content {
+                background-color: colors.$color-primary;
+            }
         }
 
         &-avatar {
@@ -278,6 +284,7 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 1rem;
+        padding-top: 0;
         background-color: #000000;
     }
 
