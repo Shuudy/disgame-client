@@ -155,12 +155,12 @@ function PartyChatUI() {
                             <div className="party-chat__game">
                                 <div className="party-chat__game-image">
                                     <img
-                                        src="https://gmedia.playstation.com/is/image/SIEPDC/apex-legends-listing-thumb-01-ps4-en-29oct20?$facebook$"
-                                        alt="Apex Legends"
+                                        src={party.game.image}
+                                        alt={party.game.name}
                                     />
                                 </div>
                                 <div className="party-chat__game-name">
-                                    Apex Legends
+                                    {party.game.name}
                                 </div>
                             </div>
                             <div className="party-chat__party">
