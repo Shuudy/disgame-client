@@ -168,7 +168,7 @@ function PartyChatUI() {
                                     {party.name}
                                 </div>
                                 <div className="party-chat__party-description">
-                                    Description de la partie
+                                    {party.description}
                                 </div>
                             </div>
                             <PartyChatDetails
