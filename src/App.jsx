@@ -12,6 +12,7 @@ import NotFound from "./components/Errors/NotFound";
 import "./assets/css/app.scss";
 import PartyChat from "./components/Games/PartyChat";
 import PartyChatUI from "./components/Games/PartyChatUI";
+import Price from "./components/Price";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <AuthProvider>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/price" element={<Price />} />
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
                     <Route path="forgot-password" element={<ForgotPassword />} />
