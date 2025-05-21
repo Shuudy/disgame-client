@@ -9,6 +9,7 @@ function CreateParty() {
     const [lang, setLang] = useState("fr");
     const [style, setStyle] = useState("casual");
     const [maxPlayers, setMaxPlayers] = useState(4);
+    const [description, setDescription] = useState("");
     const [error, setError] = useState(null);
     const { id } = useParams();
     const navigate = useNavigate();
@@ -58,6 +59,7 @@ function CreateParty() {
                         lang,
                         maxPlayers,
                         style,
+                        description,
                     }),
                 },
             );
@@ -96,6 +98,16 @@ function CreateParty() {
                         required
                     />
                 </div>
+                <div>
+                    <label htmlFor="description">Description</label>
+                        <textarea
+                            id="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            rows={3}
+                            required
+                        />
+                    </div>
                 <div>
                     <label htmlFor="lang">Language</label>
                     <select

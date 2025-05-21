@@ -11,6 +11,7 @@ import CreateParty from "./components/Games/CreateParty";
 import NotFound from "./components/Errors/NotFound";
 import "./assets/css/app.scss";
 import PartyChat from "./components/Games/PartyChat";
+import PartyChatUI from "./components/Games/PartyChatUI";
 import Price from "./components/Price";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
                     <Route path="forgot-password" element={<ForgotPassword />} />
+                    <Route path="partychat" element={<PartyChatUI />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="games" element={<Games />} />
                         <Route path="games/:id" element={<Parties />} />
