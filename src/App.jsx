@@ -13,6 +13,7 @@ import "./assets/css/app.scss";
 import PartyChat from "./components/Games/PartyChat";
 import PartyChatUI from "./components/Games/PartyChatUI";
 import Price from "./components/Price";
+import Profile from "./components/Profile/Profile";
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                             element={<CreateParty />}
                         />
                         <Route path="games/:id/party/:partyId" element={<PartyChat />} />
+                        <Route path="profile/:id" element={<Profile />} />
                     </Route>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
