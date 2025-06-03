@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProfileOverview from "./ProfileOverview";
 import ProfileGames from "./ProfileGames";
 import ProfileParties from "./ProfileParties";
+import ProfileReviews from "./ProfileReviews";
 
 function Profile() {
     const [activeTab, setActiveTab] = useState("overview");
@@ -132,6 +133,14 @@ function Profile() {
                 </div>
                 <div
                     className={`profile__tabs-item${
+                        activeTab === "reviews" ? " active" : ""
+                    }`}
+                    onClick={() => setActiveTab("reviews")}
+                >
+                    Avis
+                </div>
+                <div
+                    className={`profile__tabs-item${
                         activeTab === "games" ? " active" : ""
                     }`}
                     onClick={() => setActiveTab("games")}
@@ -149,6 +158,7 @@ function Profile() {
             </div>
             <div className="profile__content">
                 {activeTab === "overview" && <ProfileOverview />}
+                {activeTab === "reviews" && <ProfileReviews />}
                 {activeTab === "games" && <ProfileGames />}
                 {activeTab === "parties" && <ProfileParties />}
             </div>
