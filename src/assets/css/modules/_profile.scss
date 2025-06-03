@@ -88,11 +88,13 @@
 
     &__reviews {
         display: flex;
+        flex-wrap: wrap;
         gap: 2rem;
 
         &-left {
             flex: 1;
-            max-width: 300px;
+            align-self: flex-start;
+            max-width: 390px;
             background-color: colors.$color-base-background;
             padding: 1.5rem;
 
@@ -199,4 +201,15 @@
             }
         }
     }
+}
+
+.text-yellow {
+    color: rgb(250, 204, 21);
+}
+.fill-yellow {
+    fill: #facc15;
+}
+
+.text-gray {
+    color: #475569;
 }
