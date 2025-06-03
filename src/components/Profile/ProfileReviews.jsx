@@ -167,7 +167,7 @@ function ProfileReviews() {
                                             ProGamer123
                                         </div>
                                         <div className="profile__reviews-right-item-header-ratinginfo">
-                                            <span>{renderStars(3)}</span>
+                                            <div>{renderStars(1)}</div>
                                             <span>il y a 3 jours</span>
                                         </div>
                                     </div>

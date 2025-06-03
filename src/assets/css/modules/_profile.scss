@@ -180,6 +180,11 @@
                         align-items: center;
                         gap: .5rem;
 
+                        div:first-child {
+                            display: flex;
+                            align-items: center;
+                        }
+
                         span:last-child {
                             color: colors.$color-gray;
                         }
