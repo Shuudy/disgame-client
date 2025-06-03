@@ -1,4 +1,20 @@
+import { useState } from "react";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
+
 function ProfileReviews() {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div className="profile__reviews">
             <div className="profile__reviews-left">
@@ -101,7 +117,7 @@ function ProfileReviews() {
                 </div>
                 <div className="profile__reviews-left-footer">
                     <div className="profile__reviews-left-separator"></div>
-                    <div className="form__button">+ Ajouter un avis</div>
+                    <div className="form__button" onClick={openModal}>+ Ajouter un avis</div>
                 </div>
             </div>
 
@@ -146,8 +162,55 @@ function ProfileReviews() {
                             </div>
                         </div>
                     </div>
+                    <div className="profile__reviews-right-item">
+                        <div className="profile__reviews-right-picture">
+                            <img src="https://placehold.co/48" alt="User" />
+                        </div>
+                        <div className="profile__reviews-right-item-infos">
+                            <div className="profile__reviews-right-item-header">
+                                <div className="profile__reviews-right-item-header-name">
+                                    ProGamer123
+                                </div>
+                                <div className="profile__reviews-right-item-header-ratinginfo">
+                                    <span>3,4</span>
+                                    <span>il y a 3 jours</span>
+                                </div>
+                            </div>
+                            <div className="profile__reviews-right-item-content">
+                                test
+                            </div>
+                        </div>
+                    </div>
+                    <div className="profile__reviews-right-item">
+                        <div className="profile__reviews-right-picture">
+                            <img src="https://placehold.co/48" alt="User" />
+                        </div>
+                        <div className="profile__reviews-right-item-infos">
+                            <div className="profile__reviews-right-item-header">
+                                <div className="profile__reviews-right-item-header-name">
+                                    ProGamer123
+                                </div>
+                                <div className="profile__reviews-right-item-header-ratinginfo">
+                                    <span>3,4</span>
+                                    <span>il y a 3 jours</span>
+                                </div>
+                            </div>
+                            <div className="profile__reviews-right-item-content">
+                                test
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={closeModal}
+                contentLabel="Ajouter un avis"
+                className="modal"
+                overlayClassName="modal-overlay"
+            >
+                <h3>Ajouter un avis</h3>
+            </Modal>
         </div>
     );
 }
