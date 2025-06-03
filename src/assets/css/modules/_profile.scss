@@ -104,6 +104,11 @@
                     font-size: 1.25rem;
                     font-weight: 600;
                 }
+
+                &-rating {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                }
             }
 
             &-subheader {
@@ -176,7 +181,11 @@
                         span:last-child {
                             color: colors.$color-gray;
                         }
-                    }                    
+                    }
+
+                    &-name {
+                        font-weight: 600;
+                    }
                 }
 
                 &-content {
