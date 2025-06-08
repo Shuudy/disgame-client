@@ -1,0 +1,189 @@
+@use '../utils/variables';
+@use '../utils/placeholders';
+@use '../utils/colors';
+
+.parties {
+
+    &__banner {
+        height: variables.$parties-banner-height;
+
+        background: linear-gradient(to bottom, transparent 0%, #000000 100%), var(--parties-banner-image) no-repeat center center / cover;
+
+        &-content {
+            @extend %container;
+            height: inherit;
+
+            display: flex;
+            align-items: flex-end;
+            
+            padding-bottom: 24px;
+        }
+
+        &-badges {
+            display: flex;
+            gap: 8px;
+        }
+
+        &-badge {
+            padding: 4px 12px;
+
+            border: 1px solid colors.$color-primary;
+            border-radius: 8px;
+            background-color: colors.$color-special2-background;
+            color: colors.$color-special-hover;
+
+            font-size: 12px;
+        }
+
+        &-title {
+            font-size: 36px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+    }
+
+    &__content {
+        @extend %container;
+
+        &-header {
+            margin-top: 68px;
+            margin-bottom: 32px;
+
+            &-infos {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                margin-bottom: 56px;
+
+                @media screen and (max-width: variables.$parties-content-breakpoint) {
+                    &-button .form__button{
+                        display: block;
+                        width: max-content;
+                    }
+                }
+                
+                &-title {
+                    font-size: 36px;
+                    font-weight: 700;
+                }
+
+            }
+
+            &-searchs {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                max-width: 538px;
+            }
+
+            &-filters {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                @media screen and (max-width: variables.$parties-content-header-breakpoint) {
+                    justify-content: center;
+                    gap: 1rem;
+                }
+            }
+        }
+
+        &-parties {
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+        } 
+
+        &-party {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: colors.$color-base-background;
+            padding: 24px;
+
+            @media screen and (max-width: variables.$parties-content-breakpoint) {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            &-host {
+                display: flex;
+                gap: 12px;
+
+                &-avatar {
+                    width: 48px;
+                    height: 48px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+
+                &-title {
+                    display: flex;
+                    gap: 6px;
+
+                    span:first-child {
+                        font-weight: 600;
+                    }
+
+                    span:last-child {
+                        display: flex;
+                        align-items: center;
+                        color: colors.$color-primary;
+                    }
+                    
+                }
+
+                &-name {
+                    font-size: 12px;
+                }
+            }
+
+            &-info {
+                display: flex;
+                gap: 12px;
+
+                &-icon {
+                    display: flex;
+                }
+
+                &-desc {
+
+                    &-title {
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            &-infos {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 60px;
+
+                @media screen and (max-width: variables.$parties-content-breakpoint) {
+                    justify-content: center;
+                }
+            }
+
+            &-button .form__button {
+                display: block;
+                margin-top: 0;
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+
+        margin-top: 80px;
+        margin-bottom: 66px;
+    }
+}
