@@ -30,6 +30,7 @@ function PartiesUI() {
                 setGame(data);
             } catch (err) {
                 setGame(null);
+                console.warn("Error fetching game:", err);
             }
         };
         if (id && user?.token) fetchGame();
@@ -98,7 +99,7 @@ function PartiesUI() {
 
                         <div className="parties__banner-badges">
                             {game?.styles?.map((style) => (
-                                <div className="parties__banner-badge">
+                                <div className="parties__banner-badge" key={style}>
                                     {style}
                                 </div>
                             ))}
