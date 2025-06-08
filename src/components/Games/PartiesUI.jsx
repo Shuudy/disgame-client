@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 function PartiesUI() {
     const [parties, setParties] = useState([]);
+    const [game, setGame] = useState(null);
     const [error, setError] = useState(null);
     const [filterLang, setFilterLang] = useState("");
     const [filterStyle, setFilterStyle] = useState("");
@@ -12,6 +13,27 @@ function PartiesUI() {
     const { user } = useAuth();
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchGame = async () => {
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/games/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user.token}`,
+                        },
+                    },
+                );
+                if (!response.ok) throw new Error("Failed to fetch game info");
+                const data = await response.json();
+                setGame(data);
+            } catch (err) {
+                setGame(null);
+            }
+        };
+        if (id && user?.token) fetchGame();
+    }, [id, user.token]);
 
     useEffect(() => {
         const fetchParties = async () => {
@@ -52,22 +74,34 @@ function PartiesUI() {
             (!filterStyle || party.style === filterStyle),
     );
 
+    if (!game) {
+        return (
+            <div className="parties__loading">
+                <p>Chargement du jeu...</p>
+            </div>
+        );
+    }
+
     return (
         <>
             <div
                 className="parties__banner"
                 style={{
-                    "--parties-banner-image":
-                        "url('https://sites.utulsa.edu/csg/files/2022/08/dbd_keyart_4c78f56a30-scaled.jpg')",
+                    "--parties-banner-image": game?.image
+                        ? `url('${game.image}')`
+                        : "url('https://sites.utulsa.edu/csg/files/2022/08/dbd_keyart_4c78f56a30-scaled.jpg')",
                 }}
             >
                 <div className="parties__banner-content">
                     <div className="parties__banner-info">
-                        <div className="parties__banner-title">Elden Ring</div>
+                        <div className="parties__banner-title">{game.name}</div>
 
                         <div className="parties__banner-badges">
-                            <div className="parties__banner-badge">Action</div>
-                            <div className="parties__banner-badge">RPG</div>
+                            {game?.styles?.map((style) => (
+                                <div className="parties__banner-badge">
+                                    {style}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -272,12 +306,14 @@ function PartiesUI() {
                     >
                         Créer une partie
                     </Link>
-                    <a
-                        className="hero__infos-cta hero__infos-cta-explore"
-                        href="#"
-                    >
-                        Voir plus de parties
-                    </a>
+                    {filteredParties.length > 0 && (
+                        <a
+                            className="hero__infos-cta hero__infos-cta-explore"
+                            href="#"
+                        >
+                            Voir plus de parties
+                        </a>
+                    )}
                 </div>
             </div>
 

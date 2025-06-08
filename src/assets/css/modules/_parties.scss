@@ -7,7 +7,7 @@
     &__banner {
         height: variables.$parties-banner-height;
 
-        background: linear-gradient(to bottom, transparent 0%, #000000 100%), var(--parties-banner-image) no-repeat center center / cover;
+        background: linear-gradient(to bottom, transparent 0%, #000000 88%), var(--parties-banner-image) no-repeat center center / cover;
 
         &-content {
             @extend %container;
@@ -21,6 +21,7 @@
 
         &-badges {
             display: flex;
+            flex-wrap: wrap;
             gap: 8px;
         }
 
@@ -170,6 +171,10 @@
                 display: block;
                 margin-top: 0;
             }
+        }
+
+        .form__control {
+            background-color: #111826;
         }
     }
 
