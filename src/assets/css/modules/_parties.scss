@@ -80,13 +80,8 @@
 
             &-filters {
                 display: flex;
-                justify-content: space-between;
+                gap: 1rem;
                 flex-wrap: wrap;
-
-                @media screen and (max-width: variables.$parties-content-header-breakpoint) {
-                    justify-content: center;
-                    gap: 1rem;
-                }
             }
         }
 

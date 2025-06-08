@@ -27,10 +27,10 @@ function App() {
                     <Route path="register" element={<Register />} />
                     <Route path="forgot-password" element={<ForgotPassword />} />
                     <Route path="partychat" element={<PartyChatUI />} />
-                    <Route path="partiesui" element={<PartiesUI />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="games" element={<Games />} />
                         <Route path="games/:id" element={<Parties />} />
+                        <Route path="gameso/:id" element={<PartiesUI />} />
                         <Route
                             path="games/:id/create"
                             element={<CreateParty />}
