@@ -281,7 +281,7 @@ function Parties() {
                                                 Équipe
                                             </div>
                                             <span>
-                                                3/{party.maxPlayers} joueurs
+                                                {party.playersCount}/{party.maxPlayers} joueurs
                                             </span>
                                         </div>
                                     </div>
