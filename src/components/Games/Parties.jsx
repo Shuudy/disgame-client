@@ -14,6 +14,9 @@ function Parties() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
+    const [page, setPage] = useState(1);
+    const partiesPerPage = 6;
+
     useEffect(() => {
         const fetchGame = async () => {
             try {
@@ -74,6 +77,8 @@ function Parties() {
             (!filterLang || party.lang === filterLang) &&
             (!filterStyle || party.style === filterStyle),
     );
+
+    const displayedParties = filteredParties.slice(0, page * partiesPerPage);
 
     if (!game) {
         return (
@@ -177,7 +182,7 @@ function Parties() {
                     <p>{error}</p>
                 ) : (
                     <div className="parties__content-parties">
-                        {filteredParties.map((party) => (
+                        {displayedParties.map((party) => (
                             <div
                                 className="parties__content-party"
                                 key={party.id}
@@ -315,10 +320,11 @@ function Parties() {
                     >
                         Créer une partie
                     </Link>
-                    {filteredParties.length > 0 && (
+                    {displayedParties.length < filteredParties.length && (
                         <a
                             className="hero__infos-cta hero__infos-cta-explore"
-                            href="#"
+                            onClick={() => setPage(page + 1)}
+                            style={{ cursor: "pointer" }}
                         >
                             Voir plus de parties
                         </a>
