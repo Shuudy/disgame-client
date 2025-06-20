@@ -99,7 +99,10 @@ function Parties() {
 
                         <div className="parties__banner-badges">
                             {game?.styles?.map((style) => (
-                                <div className="parties__banner-badge" key={style}>
+                                <div
+                                    className="parties__banner-badge"
+                                    key={style}
+                                >
                                     {style}
                                 </div>
                             ))}
@@ -179,6 +182,10 @@ function Parties() {
                                 className="parties__content-party"
                                 key={party.id}
                             >
+                                <div className="parties__content-party-title">
+                                    {party.name}
+                                </div>
+
                                 <div className="parties__content-party-host">
                                     <div className="parties__content-party-host-avatar">
                                         <img
@@ -281,7 +288,8 @@ function Parties() {
                                                 Équipe
                                             </div>
                                             <span>
-                                                {party.playersCount}/{party.maxPlayers} joueurs
+                                                {party.playersCount}/
+                                                {party.maxPlayers} joueurs
                                             </span>
                                         </div>
                                     </div>
