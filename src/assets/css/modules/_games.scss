@@ -53,6 +53,10 @@
         flex-wrap: wrap;
 
         margin-top: 132px;
+
+         @media screen and (max-width: 879px) {
+            justify-content: center;
+        }
     }
 
     &__card {
@@ -113,6 +117,7 @@
         &-stats {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             gap: 8px;
 
             span:first-child {
