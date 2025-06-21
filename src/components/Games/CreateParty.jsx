@@ -1,3 +1,4 @@
+import Footer from "../UI/Footer";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -85,69 +86,97 @@ function CreateParty() {
     }
 
     return (
-        <div>
-            <h1>Create a New Party for {game.name}</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="name">Party Name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
+        <>
+            <div className="create-party__container">
+                <div className="create-party__header">
+                    <div className="create-party__header-title">
+                        Lance ta partie
+                    </div>
+                    <div className="create-party__header-subtitle">
+                        Crée une partie selon tes règles ! En quelques clics,
+                        rassemble les joueurs qui te correspondent vraiment.
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="description">Description</label>
-                        <textarea
-                            id="description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            rows={3}
+
+                <form className="create-party__form" onSubmit={handleSubmit}>
+                    <div className="create-party__form-group">
+                        <input
+                            type="text"
+                            className="form__control"
+                            placeholder="Nom de la partie"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             required
                         />
                     </div>
-                <div>
-                    <label htmlFor="lang">Language</label>
-                    <select
-                        id="lang"
-                        value={lang}
-                        onChange={(e) => setLang(e.target.value)}
-                        required
-                    >
-                        <option value="fr">French</option>
-                        <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="style">Game Style</label>
-                    <select
-                        id="style"
-                        value={style}
-                        onChange={(e) => setStyle(e.target.value)}
-                        required
-                    >
-                        <option value="casual">Casual</option>
-                        <option value="competitive">Competitive</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="maxPlayers">Max Players</label>
-                    <input
-                        type="number"
-                        id="maxPlayers"
-                        value={maxPlayers}
-                        onChange={(e) => setMaxPlayers(Number(e.target.value))}
-                        min="2"
-                        max="10"
-                        required
-                    />
-                </div>
-                <button type="submit">Create Party</button>
-            </form>
-        </div>
+
+                    <div className="create-party__form-group">
+                        <textarea
+                            id="description"
+                            className="form__control"
+                            placeholder="Décris ta partie..."
+                            rows={8}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div className="create-party__form-row">
+                        <div className="create-party__form-group">
+                            <select
+                                className="form__control"
+                                id="lang"
+                                value={lang}
+                                onChange={(e) => setLang(e.target.value)}
+                            >
+                                <option value="fr">Français</option>
+                                <option value="en">Anglais</option>
+                                <option value="es">Espagnol</option>
+                            </select>
+                        </div>
+                        <div className="create-party__form-group">
+                            <select
+                                className="form__control"
+                                value={style}
+                                onChange={(e) => setStyle(e.target.value)}
+                                required
+                            >
+                                <option value="casual">Casual</option>
+                                <option value="competitive">Compétitif</option>
+                            </select>
+                        </div>
+
+                        <div className="create-party__form-group">
+                            <input
+                                type="number"
+                                className="form__control"
+                                id="maxPlayers"
+                                min="2"
+                                max="10"
+                                value={maxPlayers}
+                                onChange={(e) =>
+                                    setMaxPlayers(Number(e.target.value))
+                                }
+                                required
+                                placeholder="Joueurs max"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="create-party__cta">
+                        <button
+                            type="submit"
+                            className="hero__infos-cta hero__infos-cta-start"
+                        >
+                            Créer la partie
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <Footer />
+        </>
     );
 }
 

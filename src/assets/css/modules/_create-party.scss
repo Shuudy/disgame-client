@@ -32,9 +32,12 @@
         justify-content: center;
 
         margin-bottom: 63px;
-        margin-top: 40px;
+        margin-top: 1rem;
 
-        &:hover {
+        button {
+            border: none;
+            color: inherit;
+
             cursor: pointer;
         }
     }

@@ -14,7 +14,6 @@ import PartyChat from "./components/Games/PartyChat";
 import PartyChatUI from "./components/Games/PartyChatUI";
 import Price from "./components/Price";
 import Profile from "./components/Profile/Profile";
-import CreatePartyUI from "./components/Games/CreatePartyUI";
 
 function App() {
     return (
@@ -34,7 +33,6 @@ function App() {
                             path="games/:id/create"
                             element={<CreateParty />}
                         />
-                        <Route path="games/:id/createo" element={<CreatePartyUI />} />
                         <Route path="games/:id/party/:partyId" element={<PartyChat />} />
                         <Route path="profile/:id" element={<Profile />} />
                     </Route>
