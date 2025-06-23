@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import ProfileOverview from "./ProfileOverview";
 import ProfileGames from "./ProfileGames";
 import ProfileParties from "./ProfileParties";
@@ -6,27 +8,60 @@ import ProfileReviews from "./ProfileReviews";
 
 function Profile() {
     const [activeTab, setActiveTab] = useState("overview");
+    const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const { user } = useAuth();
+    const { id } = useParams();
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/profile/${id || ""}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user.token}`,
+                        },
+                    },
+                );
+                if (!response.ok) throw new Error("Failed to fetch profile");
+                const data = await response.json();
+                setProfile(data);
+                setError(null);
+            } catch (err) {
+                setError("Erreur lors du chargement du profil.");
+            } finally {
+                setLoading(false);
+            }
+        };
+        if (user?.token) fetchProfile();
+    }, [user?.token, id]);
+
+    if (loading)
+        return <div className="profile__loading">Chargement du profil...</div>;
+    if (error) return <div className="profile__error">{error}</div>;
+    if (!profile) return null;
 
     return (
         <div className="profile__container">
             <div className="profile__header">
                 <div className="profile__header-image">
                     <img
-                        src="https://placehold.co/120x120/svg"
+                        src={`https://ui-avatars.com/api/?background=random&name=${profile.username}&size=120`}
                         alt="Profile picture"
                     />
                 </div>
                 <div className="profile__header-infos">
                     <div className="profile__header-infos-name">
-                        ProGamer123
+                        {profile.username}
                     </div>
                     <div className="profile__header-infos-member-since">
                         Membre depuis Mars 2022
                     </div>
                     <div className="profile__header-infos-bio">
-                        Joueur passionné avec un amour pour les FPS compétitifs
-                        et les jeux de stratégie. Toujours à la recherche de
-                        nouveaux coéquipiers !
+                        {profile.biography || "Aucune bio renseignée."}
                     </div>
 
                     <div className="profile__header-infos-badges">
@@ -53,7 +88,9 @@ function Profile() {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            <span>Paris, FR</span>
+                            <span>
+                                {profile.location || "Aucun lieu précisé."}
+                            </span>
                         </div>
                         <div className="profile__header-infos-badge">
                             <svg
@@ -94,31 +131,6 @@ function Profile() {
                             </svg>
                             <span>63 parties rejointes</span>
                         </div>
-                        <div className="profile__header-infos-badge">
-                            <svg
-                                width="16"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.99992 14.6667C11.6818 14.6667 14.6666 11.6819 14.6666 8.00001C14.6666 4.31811 11.6818 1.33334 7.99992 1.33334C4.31802 1.33334 1.33325 4.31811 1.33325 8.00001C1.33325 11.6819 4.31802 14.6667 7.99992 14.6667Z"
-                                    stroke="#6B7280"
-                                    strokeWidth="1.33333"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M8 4V8L10.6667 9.33333"
-                                    stroke="#6B7280"
-                                    strokeWidth="1.33333"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                            <span>633 heures jouées</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -158,7 +170,7 @@ function Profile() {
             </div>
             <div className="profile__content">
                 {activeTab === "overview" && <ProfileOverview />}
-                {activeTab === "reviews" && <ProfileReviews />}
+                {activeTab === "reviews" && <ProfileReviews ratings={profile.receivedRatings} />}
                 {activeTab === "games" && <ProfileGames />}
                 {activeTab === "parties" && <ProfileParties />}
             </div>

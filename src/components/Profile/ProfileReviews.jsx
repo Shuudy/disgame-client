@@ -3,7 +3,7 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-function ProfileReviews() {
+function ProfileReviews({ ratings }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -13,6 +13,42 @@ function ProfileReviews() {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    const getAverageRating = (rating) => {
+        const keys = ["fairplay", "communication", "sympathy", "punctuality"];
+        const values = keys
+            .map((key) => Number(rating[key]))
+            .filter((v) => !isNaN(v));
+        if (values.length === 0) return 0;
+        return values.reduce((a, b) => a + b, 0) / values.length;
+    };
+
+    function timeAgo(dateString) {
+        if (!dateString) return "";
+        const date = new Date(Date.parse(dateString));
+        console.log(date);
+        const now = new Date();
+        let diff = Math.floor((now - date) / 1000);
+        if (diff < 0) diff = 0;
+
+        if (diff < 60) return "il y a quelques secondes";
+        if (diff < 3600)
+            return `il y a ${Math.floor(diff / 60)} minute${
+                Math.floor(diff / 60) > 1 ? "s" : ""
+            }`;
+        if (diff < 86400)
+            return `il y a ${Math.floor(diff / 3600)} heure${
+                Math.floor(diff / 3600) > 1 ? "s" : ""
+            }`;
+        if (diff < 2592000)
+            return `il y a ${Math.floor(diff / 86400)} jour${
+                Math.floor(diff / 86400) > 1 ? "s" : ""
+            }`;
+        if (diff < 31536000) return `il y a ${Math.floor(diff / 2592000)} mois`;
+        return `il y a ${Math.floor(diff / 31536000)} an${
+            Math.floor(diff / 31536000) > 1 ? "s" : ""
+        }`;
+    }
 
     const renderStars = (rating) => {
         const stars = [];
@@ -52,7 +88,7 @@ function ProfileReviews() {
                     </div>
                 </div>
                 <div className="profile__reviews-left-subheader">
-                    3 commentaires
+                    {ratings.length} commentaire{ratings.length > 1 ? "s" : ""}
                 </div>
                 <div className="profile__reviews-left-list">
                     <div className="profile__reviews-left-item">
@@ -151,32 +187,50 @@ function ProfileReviews() {
             <div className="profile__reviews-right">
                 <div className="profile__reviews-right-title">Avis récents</div>
                 <div className="profile__reviews-right-list">
-                    {Array(5)
-                        .fill()
-                        .map((_, index) => (
-                            <div className="profile__reviews-right-item" key={index}>
+                    {ratings && ratings.length > 0 ? (
+                        ratings.map((rating, index) => (
+                            <div
+                                className="profile__reviews-right-item"
+                                key={index}
+                            >
                                 <div className="profile__reviews-right-picture">
                                     <img
-                                        src="https://placehold.co/48"
-                                        alt="User"
+                                        src={`https://ui-avatars.com/api/?background=random&name=${rating.emitter?.username}&size=50`}
+                                        alt={
+                                            rating.emitter?.username ||
+                                            "Utilisateur"
+                                        }
                                     />
                                 </div>
                                 <div className="profile__reviews-right-item-infos">
                                     <div className="profile__reviews-right-item-header">
                                         <div className="profile__reviews-right-item-header-name">
-                                            ProGamer123
+                                            {rating.emitter?.username ||
+                                                "Utilisateur"}
                                         </div>
                                         <div className="profile__reviews-right-item-header-ratinginfo">
-                                            <div>{renderStars(1)}</div>
-                                            <span>il y a 3 jours</span>
+                                            <div>
+                                                {renderStars(
+                                                    getAverageRating(rating),
+                                                )}
+                                            </div>
+                                            <span>
+                                                {timeAgo(rating.createdAt) ||
+                                                    ""}
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="profile__reviews-right-item-content">
-                                        test
+                                        {rating.comment || ""}
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        ))
+                    ) : (
+                        <div className="profile__reviews-right-empty">
+                            Aucun avis pour ce profil.
+                        </div>
+                    )}
                 </div>
             </div>
             <Modal
