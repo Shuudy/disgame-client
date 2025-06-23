@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo-disgame.svg";
+import useAuth from "../../hooks/useAuth";
 
 function Navbar() {
+    const { user } = useAuth();
+
     return (
         <div className="navbar">
             <div className="navbar__content">
-                <div className="navbar__logo">
+                <Link href="/" className="navbar__logo">
                     <img src={logo} alt="Disgame Logo" />
+                </Link>
+                <div className="navbar-links">
+                    <Link to="/games" className="navbar__link">
+                        Découvrir les jeux
+                    </Link>
+                    <Link to="/price" className="navbar__link">
+                        Tarifs
+                    </Link>
                 </div>
                 <div className="navbar__auth">
                     <Link

@@ -48,4 +48,16 @@
         align-items: center;
         gap: 1rem;
     }
+
+    &-links {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    &__link {
+        &:hover {
+            color: colors.$color-special2-color;
+        }
+    }
 }
