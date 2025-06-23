@@ -20,18 +20,28 @@ function Navbar() {
                     </Link>
                 </div>
                 <div className="navbar__auth">
-                    <Link
-                        to="/login"
-                        className="navbar__button navbar__button-login"
-                    >
-                        Se connecter
-                    </Link>
-                    <Link
-                        to="/register"
-                        className="navbar__button navbar__button-register"
-                    >
-                        S'inscrire
-                    </Link>
+                    {user ? (
+                        <Link to={`/profile/${user.id}`} className="navbar__profile">
+                            <img
+                                src={`https://ui-avatars.com/api/?background=random&name=${user.username}&size=48`}
+                            />
+                        </Link>
+                    ) : (
+                        <>
+                            <Link
+                                to="/login"
+                                className="navbar__button navbar__button-login"
+                            >
+                                Se connecter
+                            </Link>
+                            <Link
+                                to="/register"
+                                className="navbar__button navbar__button-register"
+                            >
+                                S'inscrire
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
