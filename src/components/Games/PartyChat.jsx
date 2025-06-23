@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import useAuth from "../../hooks/useAuth";
 import { io } from "socket.io-client";
 import { useParams } from "react-router-dom";
+import Navbar from "../UI/Navbar";
 
 function PartyChatUI() {
     const { partyId } = useParams();
@@ -148,6 +149,7 @@ function PartyChatUI() {
 
     return (
         <div>
+            <Navbar lessheight={true} />
             {party ? (
                 <>
                     <div className="party-chat">
@@ -198,7 +200,7 @@ function PartyChatUI() {
                                 </div>
                             </div>
 
-                            <button className="party-chat__leave">
+                            <button onClick={() => window.location.href = `/games/${party.game.id}`} className="party-chat__leave">
                                 Quitter la partie
                             </button>
                         </div>
