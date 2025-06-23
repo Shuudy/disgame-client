@@ -1,8 +1,9 @@
 @use "../utils/colors";
+@use "../utils/variables";
 
 .party-chat {
     display: flex;
-    height: 100dvh;
+    height: calc(100dvh - variables.$navbar-height-less);
 
     &__leave {
         margin-top: auto;
