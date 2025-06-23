@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo-disgame.svg";
 import useAuth from "../../hooks/useAuth";
 
-function Navbar() {
+function Navbar({ lessheight = false }) {
     const { user } = useAuth();
 
     return (
-        <div className="navbar">
+        <div className={`navbar ${lessheight ? "navbar--less-height" : ""}`}>
             <div className="navbar__content">
-                <Link href="/" className="navbar__logo">
+                <Link to="/" className="navbar__logo">
                     <img src={logo} alt="Disgame Logo" />
                 </Link>
                 <div className="navbar-links">

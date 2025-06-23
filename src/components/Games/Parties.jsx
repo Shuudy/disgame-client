@@ -2,6 +2,7 @@ import Footer from "../../components/UI/Footer";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import Navbar from "../../components/UI/Navbar";
 
 function Parties() {
     const [parties, setParties] = useState([]);
@@ -90,6 +91,7 @@ function Parties() {
 
     return (
         <>
+            <Navbar lessheight="true"/>
             <div
                 className="parties__banner"
                 style={{

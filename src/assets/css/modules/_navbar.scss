@@ -17,6 +17,10 @@
         @extend %container;
     }
 
+    &--less-height {
+        height: variables.$navbar-height-less;
+    }
+
     &__button {
         padding: 11px 12px;
         font-size: 14px;
@@ -53,6 +57,11 @@
         display: flex;
         align-items: center;
         gap: 3rem;
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
     }
 
     &__link {
