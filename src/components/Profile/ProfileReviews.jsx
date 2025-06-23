@@ -3,8 +3,17 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-function ProfileReviews({ ratings }) {
+function ProfileReviews({ ratings, profileId }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [form, setForm] = useState({
+        comment: "",
+        communication: 3,
+        sympathy: 3,
+        punctuality: 3,
+        fairplay: 3,
+    });
+    const [submitting, setSubmitting] = useState(false);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -101,6 +110,43 @@ function ProfileReviews({ ratings }) {
             );
         }
         return stars;
+    };
+
+    const handleFormChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({
+            ...prev,
+            [name]: name === "comment" ? value : Number(value),
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setSubmitting(true);
+        try {
+            await fetch(
+                `${import.meta.env.VITE_API_URL}/profile/${profileId}/review`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token",
+                        )}`,
+                    },
+                    body: JSON.stringify(form),
+                },
+            );
+        } catch (err) {}
+        setSubmitting(false);
+        setForm({
+            comment: "",
+            communication: 3,
+            sympathy: 3,
+            punctuality: 3,
+            fairplay: 3,
+        });
+        closeModal();
     };
 
     return (
@@ -268,6 +314,75 @@ function ProfileReviews({ ratings }) {
                 overlayClassName="modal-overlay"
             >
                 <h3>Ajouter un avis</h3>
+                <form onSubmit={handleSubmit} className="profile__reviews-form">
+                    <div className="profile__reviews-form-group">
+                        <label>Commentaire</label>
+                        <textarea
+                            name="comment"
+                            value={form.comment}
+                            onChange={handleFormChange}
+                            required
+                            rows={3}
+                            className="form__control"
+                            placeholder="Votre commentaire"
+                        />
+                    </div>
+                    <div className="profile__reviews-form-group">
+                        <label>Communication</label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="5"
+                            name="communication"
+                            value={form.communication}
+                            onChange={handleFormChange}
+                        />
+                        <span>{form.communication}</span>
+                    </div>
+                    <div className="profile__reviews-form-group">
+                        <label>Sympathie & ambiance</label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="5"
+                            name="sympathy"
+                            value={form.sympathy}
+                            onChange={handleFormChange}
+                        />
+                        <span>{form.sympathy}</span>
+                    </div>
+                    <div className="profile__reviews-form-group">
+                        <label>Ponctualité</label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="5"
+                            name="punctuality"
+                            value={form.punctuality}
+                            onChange={handleFormChange}
+                        />
+                        <span>{form.punctuality}</span>
+                    </div>
+                    <div className="profile__reviews-form-group">
+                        <label>Fair-play</label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="5"
+                            name="fairplay"
+                            value={form.fairplay}
+                            onChange={handleFormChange}
+                        />
+                        <span>{form.fairplay}</span>
+                    </div>
+                    <button
+                        type="submit"
+                        className="form__button"
+                        disabled={submitting}
+                    >
+                        {submitting ? "Envoi..." : "Envoyer l'avis"}
+                    </button>
+                </form>
             </Modal>
         </div>
     );
