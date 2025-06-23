@@ -1,0 +1,227 @@
+@use '../utils/colors';
+@use '../utils/placeholders';
+
+.profile {
+
+
+    &__container {
+        @extend %container;
+        margin-top: 103px;
+        margin-bottom: 103px;
+    }
+
+    &__header {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+
+        @media screen and (max-width: 420px) {
+            flex-wrap: wrap;
+        }
+
+        &-image {
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        &-infos {
+
+            &-name {
+                font-size: 1.875rem;
+                font-weight: 600;
+            }
+
+            &-member-since {
+                color: colors.$populargames-number-color;
+            }
+            
+            &-bio {
+                margin: 1rem 0;
+            }
+
+            &-badges {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                color: colors.$color-gray;
+            }
+
+            &-badge {
+                display: flex;
+                align-items: center;
+                gap: .25rem;
+            }
+        }
+    }
+
+    &__tabs {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+
+        background-color: colors.$color-base-background;
+
+        &-item {
+            display: flex;
+            align-items: center;
+            height: inherit;
+
+            padding: .75rem 1.5rem;
+            font-size: .875rem;
+            line-height: 1.25rem;
+
+            border-bottom: 2px solid transparent;
+
+            cursor: pointer;
+
+            &.active {
+                border-color: colors.$color-primary;
+            }
+        }
+    }
+
+    &__reviews {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-left {
+            flex: 1;
+            align-self: flex-start;
+            max-width: 390px;
+            background-color: colors.$color-base-background;
+            padding: 1.5rem;
+
+            &-header {
+                display: flex;
+                justify-content: space-between;
+
+                &-title {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                }
+
+                &-rating {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                }
+            }
+
+            &-subheader {
+                margin-top: 6px;
+                color: colors.$color-gray;
+            }
+
+            &-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+
+                margin-top: 1.5rem;
+            }
+
+            &-separator {
+                height: 1px;
+                background-color: colors.$border-color;
+                margin: 1.5rem 0;
+            }
+
+            &-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                &-info {
+                    display: flex;
+                    align-items: center;
+                    gap: .75rem;
+                }
+            }
+
+            &-footer .form__button {
+                text-align: center;
+            }
+        }
+
+        &-right {
+            flex: 2;
+            &-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+            }
+            
+            &-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            &-item {
+                display: flex;
+                gap: 1rem;
+
+                padding: 1.25rem;
+                background-color: colors.$color-base-background;
+
+                &-header {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .5rem;
+
+                    &-ratinginfo {
+                        display: flex;
+                        align-items: center;
+                        gap: .5rem;
+
+                        div:first-child {
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        span:last-child {
+                            color: colors.$color-gray;
+                        }
+                    }
+
+                    &-name {
+                        font-weight: 600;
+                    }
+                }
+
+                &-content {
+                    margin-top: .75rem;
+                    color: #cbd5e1;
+                }
+            }
+
+            &-picture img {
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+.text-yellow {
+    color: rgb(250, 204, 21);
+}
+.fill-yellow {
+    fill: #facc15;
+}
+
+.text-gray {
+    color: #475569;
+}

@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import PartyChatDetails from "./PartyChatDetails";
+import { useEffect, useState, useRef } from "react";
 import useAuth from "../../hooks/useAuth";
 import { io } from "socket.io-client";
 import { useParams } from "react-router-dom";
+import Navbar from "../UI/Navbar";
+import { Link } from "react-router-dom";
 
-function PartyChat() {
+function PartyChatUI() {
     const { partyId } = useParams();
     const { user } = useAuth();
     const [socket, setSocket] = useState(null);
@@ -12,6 +15,7 @@ function PartyChat() {
     const [messages, setMessages] = useState([]);
     const [players, setPlayers] = useState([]);
     const [party, setParty] = useState(null);
+    const messagesEndRef = useRef(null);
 
     useEffect(() => {
         const fetchPartyDetails = async () => {
@@ -39,6 +43,12 @@ function PartyChat() {
 
         fetchPartyDetails();
     }, [partyId, user.token]);
+
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
 
     useEffect(() => {
         if (!party) return;
@@ -140,87 +150,224 @@ function PartyChat() {
 
     return (
         <div>
+            <Navbar lessheight={true} />
             {party ? (
                 <>
-                    <h2>
-                        Chat for {party.name} - Host: {party.host?.username}
-                    </h2>
-                    <div>
-                        <h3>Players in the Party</h3>
-                        <ul>
-                            {players.map((player, index) => (
-                                <li key={index}>{player.username}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        {messages.map((message, index) => (
-                            <div key={index}>
-                                {message.type === "message" ? (
-                                    // Display this message if it comes from the logged-in user
-                                    message.username === user.username ? (
-                                        <>
-                                            <strong>Vous</strong>:{" "}
-                                            {message.content} -{" "}
-                                            {message.timestamp
-                                                ? new Date(
-                                                      message.timestamp,
-                                                  ).toLocaleTimeString(
-                                                      "fr-FR",
-                                                      {
-                                                          hour: "2-digit",
-                                                          minute: "2-digit",
-                                                      },
-                                                  )
-                                                : "Invalid time"}
-                                        </>
-                                    ) : (
-                                        // Display this message if it comes from someone other than the logged-in user
-                                        <>
-                                            <strong>{message.username}</strong>:{" "}
-                                            {message.content} -{" "}
-                                            {message.timestamp
-                                                ? new Date(
-                                                      message.timestamp,
-                                                  ).toLocaleTimeString(
-                                                      "fr-FR",
-                                                      {
-                                                          hour: "2-digit",
-                                                          minute: "2-digit",
-                                                      },
-                                                  )
-                                                : "Invalid time"}
-                                        </>
-                                    )
-                                ) : message.type === "playerJoined" ||
-                                  message.type === "playerLeft" ? (
-                                    <>
-                                        {message.content} -{" "}
-                                        {message.timestamp
-                                            ? new Date(
-                                                  message.timestamp,
-                                              ).toLocaleTimeString("fr-FR", {
-                                                  hour: "2-digit",
-                                                  minute: "2-digit",
-                                              })
-                                            : "Invalid time"}
-                                    </>
-                                ) : null}
+                    <div className="party-chat">
+                        <div className="party-chat__sidebar party-chat__sidebar-left">
+                            <div className="party-chat__game">
+                                <div className="party-chat__game-image">
+                                    <img
+                                        src={party.game.image}
+                                        alt={party.game.name}
+                                    />
+                                </div>
+                                <div className="party-chat__game-name">
+                                    {party.game.name}
+                                </div>
                             </div>
-                        ))}
+                            <div className="party-chat__party">
+                                <div className="party-chat__party-title">
+                                    {party.name}
+                                </div>
+                                <div className="party-chat__party-description">
+                                    {party.description}
+                                </div>
+                            </div>
+                            <PartyChatDetails
+                                playerCount={`${players.length}/${party.maxPlayers}`}
+                                style={party.style}
+                            />
+
+                            <div className="party-chat__host">
+                                <div className="party-chat__host-title">
+                                    Hôte de la partie
+                                </div>
+                                <div className="party-chat__host-content">
+                                    <Link to={`/profile/${party.host?.id}`} className="party-chat__host-picture">
+                                        <img
+                                            src={`https://ui-avatars.com/api/?background=random&name=${party.host?.username}&size=50`}
+                                            alt=""
+                                        />
+                                    </Link>
+                                    <div className="party-chat__host-infos">
+                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__host-name">
+                                            {party.host?.username}
+                                        </Link>
+                                        <div className="party-chat__host-status">
+                                            Hôte
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button onClick={() => window.location.href = `/games/${party.game.id}`} className="party-chat__leave">
+                                Quitter la partie
+                            </button>
+                        </div>
+                        <div className="party-chat__main">
+                            <div className="party-chat__messages">
+                                {messages.map((message, index) => (
+                                    <div key={index}>
+                                        {message.type === "message" ? (
+                                            // Display this message if it comes from the logged-in user
+                                            message.username ===
+                                            user.username ? (
+                                                <>
+                                                    <div className="party-chat__message party-chat__message-me">
+                                                        <div className="party-chat__message-avatar">
+                                                            <img
+                                                                src={`https://ui-avatars.com/api/?background=random&name=${user.username}&size=50`}
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div className="party-chat__message-content">
+                                                            <div className="party-chat__message-header">
+                                                                <div className="party-chat__message-name">
+                                                                    Vous
+                                                                </div>
+                                                                <div className="party-chat__message-time">
+                                                                    {message.timestamp
+                                                                        ? new Date(
+                                                                              message.timestamp,
+                                                                          ).toLocaleTimeString(
+                                                                              "fr-FR",
+                                                                              {
+                                                                                  hour: "2-digit",
+                                                                                  minute: "2-digit",
+                                                                              },
+                                                                          )
+                                                                        : "Invalid time"}
+                                                                </div>
+                                                            </div>
+                                                            <div className="party-chat__message-text">
+                                                                {
+                                                                    message.content
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                // Display this message if it comes from someone other than the logged-in user
+                                                <>
+                                                    <div className="party-chat__message">
+                                                        <div className="party-chat__message-avatar">
+                                                            <img
+                                                                src={`https://ui-avatars.com/api/?background=random&name=${message.username}&size=50`}
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div className="party-chat__message-content">
+                                                            <div className="party-chat__message-header">
+                                                                <div className="party-chat__message-name">
+                                                                    {
+                                                                        message.username
+                                                                    }
+                                                                </div>
+                                                                <div className="party-chat__message-time">
+                                                                    {message.timestamp
+                                                                        ? new Date(
+                                                                              message.timestamp,
+                                                                          ).toLocaleTimeString(
+                                                                              "fr-FR",
+                                                                              {
+                                                                                  hour: "2-digit",
+                                                                                  minute: "2-digit",
+                                                                              },
+                                                                          )
+                                                                        : "Invalid time"}
+                                                                </div>
+                                                            </div>
+                                                            <div className="party-chat__message-text">
+                                                                {
+                                                                    message.content
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )
+                                        ) : message.type === "playerJoined" ||
+                                          message.type === "playerLeft" ? (
+                                            <>
+                                                <div className="party-chat__joined">
+                                                    <div className="party-chat__joined-content">
+                                                        {message.content} •{" "}
+                                                        {message.timestamp
+                                                            ? new Date(
+                                                                  message.timestamp,
+                                                              ).toLocaleTimeString(
+                                                                  "fr-FR",
+                                                                  {
+                                                                      hour: "2-digit",
+                                                                      minute: "2-digit",
+                                                                  },
+                                                              )
+                                                            : "Invalid time"}
+                                                    </div>
+                                                </div>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                ))}
+                                <div ref={messagesEndRef} />
+                            </div>
+                            <div className="party-chat__input">
+                                <input
+                                    type="text"
+                                    placeholder="Saisissez votre message..."
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            handleSendMessage();
+                                        }
+                                    }}
+                                />
+                                <button onClick={() => handleSendMessage()}>
+                                    <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M7.27574 8.72348C7.14833 8.5963 6.99649 8.49624 6.82937 8.42933L1.5427 6.30933C1.47958 6.284 1.42571 6.23997 1.38834 6.18315C1.35096 6.12632 1.33186 6.05943 1.33361 5.99144C1.33535 5.92344 1.35785 5.85761 1.39808 5.80278C1.43832 5.74794 1.49436 5.70673 1.5587 5.68466L14.2254 1.35133C14.2844 1.32999 14.3484 1.32592 14.4097 1.33959C14.471 1.35326 14.5271 1.3841 14.5715 1.42852C14.6159 1.47293 14.6468 1.52907 14.6604 1.59037C14.6741 1.65167 14.67 1.71559 14.6487 1.77466L10.3154 14.4413C10.2933 14.5057 10.2521 14.5617 10.1973 14.6019C10.1424 14.6422 10.0766 14.6647 10.0086 14.6664C9.9406 14.6682 9.87371 14.6491 9.81688 14.6117C9.76006 14.5743 9.71603 14.5205 9.6907 14.4573L7.5707 9.16933C7.50349 9.00233 7.40315 8.85066 7.27574 8.72348ZM7.27574 8.72348L14.5694 1.43133"
+                                            stroke="white"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div className="party-chat__sidebar party-chat__sidebar-right">
+                            <div className="party-chat__sidebar-title">
+                                Joueurs
+                            </div>
+                            <div className="party-chat__sidebar-players">
+                                {players.map((player) => (
+                                    <div
+                                        className="party-chat__sidebar-player"
+                                        key={player.id}
+                                    >
+                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__sidebar-player-picture">
+                                            <img
+                                                src={`https://ui-avatars.com/api/?background=random&name=${player.username}&size=50`}
+                                                alt="Player's picture"
+                                            />
+                                        </Link>
+                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__sidebar-player-name">
+                                            {player.username}
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                    <input
-                        type="text"
-                        placeholder="Type your message..."
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                                handleSendMessage();
-                            }
-                        }}
-                    />
-                    <button onClick={() => handleSendMessage()}>Send</button>
                 </>
             ) : (
                 <p>Loading party details...</p>
@@ -229,4 +376,4 @@ function PartyChat() {
     );
 }
 
-export default PartyChat;
+export default PartyChatUI;

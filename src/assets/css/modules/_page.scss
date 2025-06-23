@@ -1,0 +1,56 @@
+@use "../utils/colors";
+
+.page-header {
+    margin-top: 64px;
+    margin-bottom: 64px;
+
+    text-align: center;
+
+    &__title {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+
+        span {
+            color: colors.$color-primary;
+        }
+    }
+
+    &__subtitle {
+        font-size: 20px;
+        color: colors.$populargames-number-color;
+    }
+}
+
+.page-error {
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    &__code {
+        font-size: 128px;
+        font-weight: 700;
+        margin-bottom: 2rem;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    &__message {
+        font-weight: 500;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    a {
+        width: max-content;
+        margin-top: 0;
+    }
+}

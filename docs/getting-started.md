@@ -43,14 +43,14 @@ Before you begin, ensure you have the following installed:
     JWT_SECRET=your_jwt_secret # Secret key used to sign JSON Web Tokens
 
     # Database connection variables
-    DB_HOST=
-    DB_PORT=
-    DB_USER=
-    DB_PASS=
-    DB_NAME=
+    DB_HOST=localhost # The hostname of the database server
+    DB_PORT=3306 # The port number for the database (default for MySQL is 3306)
+    DB_USER=root # The username for the database
+    DB_PASS=your_database_password # The password for the database user
+    DB_NAME=disgame # The name of the database
     ```
 
-    > **Note**: By default, if the `NODE_ENV` variable is not set to `production`, the database used will be SQLite. In this case, you do not need to fill in the `DB_` variables.
+    > **Note**: Ensure that the database connection variables (`DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASS`, `DB_NAME`) are correctly configured for your MySQL database.
 
 6. Start the server:
     ```bash
