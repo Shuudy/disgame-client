@@ -1,5 +1,6 @@
 import Footer from "../UI/Footer";
 import useAuth from "../../hooks/useAuth";
+import Navbar from "../UI/Navbar";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -87,6 +88,7 @@ function CreateParty() {
 
     return (
         <>
+            <Navbar lessheight={true} />
             <div className="create-party__container">
                 <div className="create-party__header">
                     <div className="create-party__header-title">
