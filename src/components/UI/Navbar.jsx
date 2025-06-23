@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo-disgame.svg";
 
 function Navbar() {
     return (
         <div className="navbar">
             <div className="navbar__content">
-                <div className="navbar__logo">Logo Disgame</div>
+                <div className="navbar__logo">
+                    <img src={logo} alt="Disgame Logo" />
+                </div>
                 <div className="navbar__auth">
                     <Link
                         to="/login"
