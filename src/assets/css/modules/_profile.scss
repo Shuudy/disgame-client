@@ -6,6 +6,8 @@
 
     &__container {
         @extend %container;
+        margin-top: 103px;
+        margin-bottom: 103px;
     }
 
     &__header {
