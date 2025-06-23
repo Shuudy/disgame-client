@@ -14,13 +14,40 @@ function ProfileReviews({ ratings }) {
         setIsModalOpen(false);
     };
 
+    const keys = ["communication", "sympathy", "punctuality", "fairplay"];
+
     const getAverageRating = (rating) => {
-        const keys = ["fairplay", "communication", "sympathy", "punctuality"];
         const values = keys
             .map((key) => Number(rating[key]))
             .filter((v) => !isNaN(v));
         if (values.length === 0) return 0;
         return values.reduce((a, b) => a + b, 0) / values.length;
+    };
+
+    const getAverageForKey = (key) => {
+        if (!ratings || ratings.length === 0) return 0;
+        const values = ratings
+            .map((r) => Number(r[key]))
+            .filter((v) => !isNaN(v));
+        if (values.length === 0) return 0;
+        return values.reduce((a, b) => a + b, 0) / values.length;
+    };
+
+    const getGlobalAverage = () => {
+        if (!ratings || ratings.length === 0) return 0;
+        let sum = 0;
+        let count = 0;
+        ratings.forEach((r) => {
+            keys.forEach((key) => {
+                const v = Number(r[key]);
+                if (!isNaN(v)) {
+                    sum += v;
+                    count++;
+                }
+            });
+        });
+        if (count === 0) return 0;
+        return sum / count;
     };
 
     function timeAgo(dateString) {
@@ -84,7 +111,7 @@ function ProfileReviews({ ratings }) {
                         Évaluations
                     </div>
                     <div className="profile__reviews-left-header-rating">
-                        4,6
+                        {getGlobalAverage().toFixed(1)}
                     </div>
                 </div>
                 <div className="profile__reviews-left-subheader">
@@ -109,7 +136,7 @@ function ProfileReviews({ ratings }) {
                             Communication
                         </div>
                         <div className="profile__reviews-left-item-rating">
-                            4,2
+                            {getAverageForKey("communication").toFixed(1)}
                         </div>
                     </div>
                     <div className="profile__reviews-left-item">
@@ -130,7 +157,7 @@ function ProfileReviews({ ratings }) {
                             Sympathie & ambiance
                         </div>
                         <div className="profile__reviews-left-item-rating">
-                            4,2
+                            {getAverageForKey("sympathy").toFixed(1)}
                         </div>
                     </div>
                     <div className="profile__reviews-left-item">
@@ -151,7 +178,7 @@ function ProfileReviews({ ratings }) {
                             Ponctuel
                         </div>
                         <div className="profile__reviews-left-item-rating">
-                            4,2
+                            {getAverageForKey("punctuality").toFixed(1)}
                         </div>
                     </div>
                     <div className="profile__reviews-left-item">
@@ -172,7 +199,7 @@ function ProfileReviews({ ratings }) {
                             Fair-play
                         </div>
                         <div className="profile__reviews-left-item-rating">
-                            4,2
+                            {getAverageForKey("fairplay").toFixed(1)}
                         </div>
                     </div>
                 </div>
