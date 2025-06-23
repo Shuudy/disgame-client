@@ -91,6 +91,11 @@
         flex-wrap: wrap;
         gap: 2rem;
 
+        &-form {
+            display: flex;
+            flex-direction: column;
+        }
+
         &-left {
             flex: 1;
             align-self: flex-start;
