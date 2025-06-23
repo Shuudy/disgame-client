@@ -354,13 +354,13 @@ function PartyChatUI() {
                                         className="party-chat__sidebar-player"
                                         key={player.id}
                                     >
-                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__sidebar-player-picture">
+                                        <Link to={`/profile/${player.id}`} className="party-chat__sidebar-player-picture">
                                             <img
                                                 src={`https://ui-avatars.com/api/?background=random&name=${player.username}&size=50`}
                                                 alt="Player's picture"
                                             />
                                         </Link>
-                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__sidebar-player-name">
+                                        <Link to={`/profile/${player.id}`} className="party-chat__sidebar-player-name">
                                             {player.username}
                                         </Link>
                                     </div>
