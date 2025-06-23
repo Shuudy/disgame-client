@@ -2,6 +2,7 @@ import Footer from "../UI/Footer";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
+import Navbar from "../UI/Navbar";
 
 function Games() {
     const [games, setGames] = useState([]);
@@ -54,6 +55,7 @@ function Games() {
 
     return (
         <>
+            <Navbar lessheight={true} />
             <div className="games__container">
                 <div className="games__header">
                     <div className="games__header-title">
