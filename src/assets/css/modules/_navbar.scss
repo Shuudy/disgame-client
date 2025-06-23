@@ -18,9 +18,7 @@
     }
 
     &--less-height {
-        height: variables.$navbar-height-less;
-
-        border-bottom: 1px solid rgb(31 41 55);
+        border-bottom: 1px solid rgb(31, 41, 55);
     }
 
     &__button {

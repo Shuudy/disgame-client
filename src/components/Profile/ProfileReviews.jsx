@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Modal from "react-modal";
+import PropTypes from "prop-types";
+import React from "react";
 
 Modal.setAppElement("#root");
 
@@ -14,6 +16,11 @@ function ProfileReviews({ ratings, profileId }) {
         fairplay: 3,
     });
     const [submitting, setSubmitting] = useState(false);
+    const [localRatings, setLocalRatings] = useState(ratings || []);
+
+    React.useEffect(() => {
+        setLocalRatings(ratings || []);
+    }, [ratings]);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -62,7 +69,6 @@ function ProfileReviews({ ratings, profileId }) {
     function timeAgo(dateString) {
         if (!dateString) return "";
         const date = new Date(Date.parse(dateString));
-        console.log(date);
         const now = new Date();
         let diff = Math.floor((now - date) / 1000);
         if (diff < 0) diff = 0;
@@ -124,7 +130,7 @@ function ProfileReviews({ ratings, profileId }) {
         e.preventDefault();
         setSubmitting(true);
         try {
-            await fetch(
+            const res = await fetch(
                 `${import.meta.env.VITE_API_URL}/profile/${profileId}/review`,
                 {
                     method: "POST",
@@ -137,7 +143,27 @@ function ProfileReviews({ ratings, profileId }) {
                     body: JSON.stringify(form),
                 },
             );
-        } catch (err) {}
+            if (res.ok) {
+                const updatedRes = await fetch(
+                    `${
+                        import.meta.env.VITE_API_URL
+                    }/profile/${profileId}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token",
+                            )}`,
+                        },
+                    },
+                );
+                if (updatedRes.ok) {
+                    const updatedRatings = await updatedRes.json();
+                    setLocalRatings(updatedRatings.receivedRatings);
+                }
+            }
+        } catch (err) {
+            console.error("Error submitting review:", err);
+        }
         setSubmitting(false);
         setForm({
             comment: "",
@@ -260,8 +286,8 @@ function ProfileReviews({ ratings, profileId }) {
             <div className="profile__reviews-right">
                 <div className="profile__reviews-right-title">Avis récents</div>
                 <div className="profile__reviews-right-list">
-                    {ratings && ratings.length > 0 ? (
-                        ratings.map((rating, index) => (
+                    {localRatings && localRatings.length > 0 ? (
+                        localRatings.map((rating, index) => (
                             <div
                                 className="profile__reviews-right-item"
                                 key={index}
@@ -387,5 +413,10 @@ function ProfileReviews({ ratings, profileId }) {
         </div>
     );
 }
+
+ProfileReviews.propTypes = {
+    ratings: PropTypes.array.isRequired,
+    profileId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
 
 export default ProfileReviews;

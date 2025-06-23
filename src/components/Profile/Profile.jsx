@@ -9,7 +9,7 @@ import Navbar from "../UI/Navbar";
 import Footer from "../UI/Footer";
 
 function Profile() {
-    const [activeTab, setActiveTab] = useState("overview");
+    const [activeTab, setActiveTab] = useState("reviews");
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -33,7 +33,7 @@ function Profile() {
                 setProfile(data);
                 setError(null);
             } catch (err) {
-                setError("Erreur lors du chargement du profil.");
+                setError("Erreur lors du chargement du profil." + err.message);
             } finally {
                 setLoading(false);
             }
@@ -48,7 +48,7 @@ function Profile() {
 
     return (
         <>
-            <Navbar />
+            <Navbar lessheight={true} />
             <div className="profile__container">
                 <div className="profile__header">
                     <div className="profile__header-image">
@@ -149,35 +149,11 @@ function Profile() {
                 <div className="profile__tabs">
                     <div
                         className={`profile__tabs-item${
-                            activeTab === "overview" ? " active" : ""
-                        }`}
-                        onClick={() => setActiveTab("overview")}
-                    >
-                        Aperçu
-                    </div>
-                    <div
-                        className={`profile__tabs-item${
                             activeTab === "reviews" ? " active" : ""
                         }`}
                         onClick={() => setActiveTab("reviews")}
                     >
                         Avis
-                    </div>
-                    <div
-                        className={`profile__tabs-item${
-                            activeTab === "games" ? " active" : ""
-                        }`}
-                        onClick={() => setActiveTab("games")}
-                    >
-                        Jeux
-                    </div>
-                    <div
-                        className={`profile__tabs-item${
-                            activeTab === "parties" ? " active" : ""
-                        }`}
-                        onClick={() => setActiveTab("parties")}
-                    >
-                        Parties
                     </div>
                 </div>
                 <div className="profile__content">
