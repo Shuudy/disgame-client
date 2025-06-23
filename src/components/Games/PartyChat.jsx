@@ -140,8 +140,31 @@ function PartyChatUI() {
         return <div>Error: {error}</div>;
     }
 
+    const blacklist = [
+        "con",
+        "connard",
+        "connasse",
+        "pute",
+        "salope",
+        "merde",
+        "fdp",
+        "enculé",
+        "batard",
+        "abruti",
+    ];
+
+    const containsInsult = (text) => {
+        const lower = text.toLowerCase();
+        return blacklist.some((word) => lower.includes(word));
+    };
+
     const handleSendMessage = () => {
         if (!message.trim()) return; // Prevent sending empty messages
+
+        if (containsInsult(message)) {
+            alert("Merci de rester courtois dans le chat.");
+            return;
+        }
 
         console.log("Sending message", message);
         socket.emit("sendMessage", { message });
@@ -184,14 +207,20 @@ function PartyChatUI() {
                                     Hôte de la partie
                                 </div>
                                 <div className="party-chat__host-content">
-                                    <Link to={`/profile/${party.host?.id}`} className="party-chat__host-picture">
+                                    <Link
+                                        to={`/profile/${party.host?.id}`}
+                                        className="party-chat__host-picture"
+                                    >
                                         <img
                                             src={`https://ui-avatars.com/api/?background=random&name=${party.host?.username}&size=50`}
                                             alt=""
                                         />
                                     </Link>
                                     <div className="party-chat__host-infos">
-                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__host-name">
+                                        <Link
+                                            to={`/profile/${party.host?.id}`}
+                                            className="party-chat__host-name"
+                                        >
                                             {party.host?.username}
                                         </Link>
                                         <div className="party-chat__host-status">
@@ -201,7 +230,12 @@ function PartyChatUI() {
                                 </div>
                             </div>
 
-                            <button onClick={() => window.location.href = `/games/${party.game.id}`} className="party-chat__leave">
+                            <button
+                                onClick={() =>
+                                    (window.location.href = `/games/${party.game.id}`)
+                                }
+                                className="party-chat__leave"
+                            >
                                 Quitter la partie
                             </button>
                         </div>
@@ -354,13 +388,19 @@ function PartyChatUI() {
                                         className="party-chat__sidebar-player"
                                         key={player.id}
                                     >
-                                        <Link to={`/profile/${player.id}`} className="party-chat__sidebar-player-picture">
+                                        <Link
+                                            to={`/profile/${player.id}`}
+                                            className="party-chat__sidebar-player-picture"
+                                        >
                                             <img
                                                 src={`https://ui-avatars.com/api/?background=random&name=${player.username}&size=50`}
                                                 alt="Player's picture"
                                             />
                                         </Link>
-                                        <Link to={`/profile/${player.id}`} className="party-chat__sidebar-player-name">
+                                        <Link
+                                            to={`/profile/${player.id}`}
+                                            className="party-chat__sidebar-player-name"
+                                        >
                                             {player.username}
                                         </Link>
                                     </div>
