@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { io } from "socket.io-client";
 import { useParams } from "react-router-dom";
 import Navbar from "../UI/Navbar";
+import { Link } from "react-router-dom";
 
 function PartyChatUI() {
     const { partyId } = useParams();
@@ -183,16 +184,16 @@ function PartyChatUI() {
                                     Hôte de la partie
                                 </div>
                                 <div className="party-chat__host-content">
-                                    <div className="party-chat__host-picture">
+                                    <Link to={`/profile/${party.host?.id}`} className="party-chat__host-picture">
                                         <img
                                             src={`https://ui-avatars.com/api/?background=random&name=${party.host?.username}&size=50`}
                                             alt=""
                                         />
-                                    </div>
+                                    </Link>
                                     <div className="party-chat__host-infos">
-                                        <div className="party-chat__host-name">
+                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__host-name">
                                             {party.host?.username}
-                                        </div>
+                                        </Link>
                                         <div className="party-chat__host-status">
                                             Hôte
                                         </div>
@@ -353,15 +354,15 @@ function PartyChatUI() {
                                         className="party-chat__sidebar-player"
                                         key={player.id}
                                     >
-                                        <div className="party-chat__sidebar-player-picture">
+                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__sidebar-player-picture">
                                             <img
                                                 src={`https://ui-avatars.com/api/?background=random&name=${player.username}&size=50`}
                                                 alt="Player's picture"
                                             />
-                                        </div>
-                                        <div className="party-chat__sidebar-player-name">
+                                        </Link>
+                                        <Link to={`/profile/${party.host?.id}`} className="party-chat__sidebar-player-name">
                                             {player.username}
-                                        </div>
+                                        </Link>
                                     </div>
                                 ))}
                             </div>

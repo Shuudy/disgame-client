@@ -194,12 +194,12 @@ function Parties() {
                                 </div>
 
                                 <div className="parties__content-party-host">
-                                    <div className="parties__content-party-host-avatar">
+                                    <Link to={`/profile/${party.host?.id}`} className="parties__content-party-host-avatar">
                                         <img
                                             src={`https://ui-avatars.com/api/?background=random&name=${party.host?.username}&size=50`}
                                             alt="Host Avatar"
                                         />
-                                    </div>
+                                    </Link>
                                     <div className="parties__content-party-host-infos">
                                         <div className="parties__content-party-host-title">
                                             <span>Hôte</span>
@@ -219,9 +219,9 @@ function Parties() {
                                                 </svg>
                                             </span>
                                         </div>
-                                        <span className="parties__content-party-host-name">
+                                        <Link to={`/profile/${party.host?.id}`} className="parties__content-party-host-name">
                                             {party.host?.username}
-                                        </span>
+                                        </Link>
                                     </div>
                                 </div>
 
