@@ -57,6 +57,10 @@
         display: flex;
         align-items: center;
         gap: 3rem;
+
+        @media screen and (max-width: 547px) {
+            display: none;
+        }
     }
 
     &__logo {
