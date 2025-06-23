@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo-disgame.svg";
 import useAuth from "../../hooks/useAuth";
+import PropTypes from "prop-types";
 
 function Navbar({ lessheight = false }) {
     const { user } = useAuth();
@@ -47,5 +48,9 @@ function Navbar({ lessheight = false }) {
         </div>
     );
 }
+
+Navbar.propTypes = {
+    lessheight: PropTypes.bool,
+};
 
 export default Navbar;
